@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natick &amp; MetroWest — A Field Guide</title>
+<meta name="description" content="A MetroWest field guide built for one Natick family: music venues and the jam-band circuit, hidden-gem bike routes, gardens and native plants, work-from-home break spots, makers' workshops, kids' robotics, D&amp;D, sailing and golf, cheese and olives, fairs and town events — organized by drive time from Natick.">
+<style>
+/* ===========================================================
+   Natick & MetroWest field guide — shared design system
+   MetroWest palette · editorial field-guide look
+   Light + dark aware · print friendly · fully responsive
+   =========================================================== */
+
+:root {
+  --navy:      #0f2c3f;
+  --navy-2:    #16405a;
+  /* stays dark in BOTH themes — for surfaces that carry white text (hero, active tab, table headers) */
+  --navy-deep:   #0f2c3f;
+  --navy-deep-2: #16405a;
+  --teal:      #2e7a53;
+  --teal-soft: #dcebe0;
+  --sand:      #f6efe4;
+  --sand-2:    #efe4d2;
+  --coral:     #e2603f;
+  --coral-2:   #f2a58c;
+  --gold:      #d99b2b;
+  --ink:       #1d2a30;
+  --ink-soft:  #4a5a62;
+  --line:      #e2d9c8;
+  --card:      #ffffff;
+  --bg:        #fbf7ef;
+  --shadow:    0 1px 2px rgba(15,44,63,.06), 0 8px 24px rgba(15,44,63,.08);
+  --radius:    16px;
+  --maxw:      1140px;
+  --sans: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --navy: #cfe6ea; --navy-2:#9fc6cf;
+    --navy-deep:#143a4f; --navy-deep-2:#1c4d68;
+    --sand:#16232a; --sand-2:#1b2c33;
+    --ink:#e8eef0; --ink-soft:#a9bcc2;
+    --line:#2a3d45; --card:#152329; --bg:#0e1a1f;
+    --teal:#5ec08d; --teal-soft:#1a3b2c;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+  }
+}
+/* viewer theme toggle (data-theme on <html>) wins over the OS preference */
+:root[data-theme="dark"] {
+  --navy: #cfe6ea; --navy-2:#9fc6cf;
+  --navy-deep:#143a4f; --navy-deep-2:#1c4d68;
+  --sand:#16232a; --sand-2:#1b2c33;
+  --ink:#e8eef0; --ink-soft:#a9bcc2;
+  --line:#2a3d45; --card:#152329; --bg:#0e1a1f;
+  --teal:#5ec08d; --teal-soft:#1a3b2c;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--sans); line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+/* ---------- Top nav ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar .wrap { display: flex; align-items: center; gap: 18px; height: 60px; }
+.brand { font-family: var(--serif); font-weight: 700; color: var(--navy);
+  font-size: 1.05rem; white-space: nowrap; display:flex; align-items:center; gap:8px; }
+.brand:hover { text-decoration: none; }
+.brand .dot { color: var(--coral); }
+.navlinks { margin-left: auto; display: flex; gap: 4px; flex-wrap: wrap; }
+.navlinks a {
+  color: var(--ink-soft); font-size: .82rem; font-weight: 600;
+  padding: 6px 10px; border-radius: 999px; letter-spacing: .01em;
+}
+.navlinks a:hover { background: var(--teal-soft); color: var(--navy); text-decoration: none; }
+.navlinks a.active { background: var(--navy-deep); color: #fff; }
+
+/* Mobile: brand row + one swipeable tab row (never a wrapped stack) */
+@media (max-width: 820px) {
+  .topbar .wrap { height: auto; flex-direction: column; align-items: stretch; gap: 0; padding-top: 8px; }
+  .brand { justify-content: center; padding-bottom: 6px; }
+  .navlinks { margin-left: 0; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    gap: 6px; padding: 2px 2px 10px; scrollbar-width: none; }
+  .navlinks::-webkit-scrollbar { display: none; }
+  .navlinks a { flex: 0 0 auto; white-space: nowrap; font-size: .85rem; padding: 7px 12px;
+    background: var(--card); border: 1px solid var(--line); }
+  .navlinks a.active { border-color: var(--navy); }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background:
+    radial-gradient(1200px 400px at 80% -10%, color-mix(in srgb, var(--teal) 30%, transparent), transparent),
+    linear-gradient(135deg, var(--navy-deep), var(--navy-deep-2));
+  color: #f4efe4; padding: 62px 0 66px; position: relative; overflow: hidden;
+}
+.hero .wrap { position: relative; z-index: 2; }
+.hero .eyebrow { text-transform: uppercase; letter-spacing: .22em; font-size: .72rem;
+  color: var(--coral-2); font-weight: 700; margin: 0 0 14px; }
+.hero h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.3rem);
+  line-height: 1.05; margin: 0 0 16px; color: #fff; }
+.hero p { font-size: 1.08rem; max-width: 640px; color: #dfe8ea; margin: 0; }
+.hero .wave { position:absolute; left:0; right:0; bottom:-1px; height:40px; z-index:1;
+  background: var(--bg);
+  -webkit-mask: radial-gradient(24px at 24px 40px, transparent 98%, #000) repeat-x;
+  mask: radial-gradient(24px at 24px 40px, transparent 98%, #000) repeat-x;
+  -webkit-mask-size: 48px 40px; mask-size: 48px 40px; }
+
+/* ---------- Section headings ---------- */
+main { padding: 40px 0 80px; }
+.section { margin: 46px 0; scroll-margin-top: 76px; }
+.section > h2 {
+  font-family: var(--serif); font-size: 1.7rem; color: var(--navy);
+  margin: 0 0 6px; display: flex; align-items: center; gap: 12px;
+}
+.section > h2 .ic { font-size: 1.5rem; }
+.section > .lede { color: var(--ink-soft); margin: 0 0 22px; max-width: 720px; }
+h3 { font-family: var(--serif); color: var(--navy); font-size: 1.25rem; margin: 30px 0 12px; }
+.kicker { text-transform: uppercase; letter-spacing: .16em; font-size: .72rem;
+  color: var(--teal); font-weight: 700; margin: 0 0 6px; }
+
+/* ---------- Cards ---------- */
+.grid { display: grid; gap: 18px; }
+.grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 860px){ .grid.cols-2, .grid.cols-3 { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 18px 18px 16px; box-shadow: var(--shadow); position: relative;
+}
+.card h4 { margin: 0 0 4px; font-size: 1.06rem; color: var(--navy);
+  font-family: var(--sans); font-weight: 700; }
+.card .where { font-size: .8rem; color: var(--teal); font-weight: 600; margin: 0 0 8px;
+  display:flex; align-items:center; gap:5px; }
+.card p { margin: 8px 0; font-size: .93rem; }
+.card .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+/* ---------- Tags / pills ---------- */
+.tag { display: inline-flex; align-items:center; gap:4px;
+  font-size: .72rem; font-weight: 600; padding: 3px 9px; border-radius: 999px;
+  background: var(--sand-2); color: var(--ink-soft); border: 1px solid var(--line); }
+.tag.free   { background: #e5f3e8; color: #1f7a4d; border-color:#bfe3ca; }
+.tag.cheap  { background: #eaf1fb; color: #2b5fa8; border-color:#c7d9f2; }
+.tag.mod    { background: #fbf0e2; color: #b9741a; border-color:#f0d9b6; }
+.tag.season { background: var(--teal-soft); color: var(--teal); border-color: transparent; }
+.tag.transit{ background:#efe7f7; color:#7a4fb0; border-color:#ddccf0; }
+.tag.weekday{ background:#eef6f2; color:#2c7a63; border-color:#cbe6db; }
+.tag.dog    { background:#f3e9dc; color:#7d5a2f; border-color:#e2cfae; }
+.tag.date   { background:#fdeaee; color:#c04a6b; border-color:#f5c9d4; }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .tag.free{background:#14331f;color:#7fd6a0;border-color:#1f5236}
+  :root:not([data-theme="light"]) .tag.cheap{background:#132a44;color:#8fb8ec;border-color:#244163}
+  :root:not([data-theme="light"]) .tag.mod{background:#3a2a12;color:#e2b06a;border-color:#5a411c}
+  :root:not([data-theme="light"]) .tag.transit{background:#2a1f3d;color:#c3a6ea;border-color:#41335e}
+  :root:not([data-theme="light"]) .tag.weekday{background:#12312a;color:#78cbb2;border-color:#1f4a40}
+  :root:not([data-theme="light"]) .tag.dog{background:#33281a;color:#d9b47f;border-color:#4f3f28}
+  :root:not([data-theme="light"]) .tag.date{background:#3a1a24;color:#eb9bb4;border-color:#57293a}
+}
+:root[data-theme="dark"] .tag.free{background:#14331f;color:#7fd6a0;border-color:#1f5236}
+:root[data-theme="dark"] .tag.cheap{background:#132a44;color:#8fb8ec;border-color:#244163}
+:root[data-theme="dark"] .tag.mod{background:#3a2a12;color:#e2b06a;border-color:#5a411c}
+:root[data-theme="dark"] .tag.transit{background:#2a1f3d;color:#c3a6ea;border-color:#41335e}
+:root[data-theme="dark"] .tag.weekday{background:#12312a;color:#78cbb2;border-color:#1f4a40}
+:root[data-theme="dark"] .tag.dog{background:#33281a;color:#d9b47f;border-color:#4f3f28}
+:root[data-theme="dark"] .tag.date{background:#3a1a24;color:#eb9bb4;border-color:#57293a}
+
+/* ---------- Callout ---------- */
+.callout { border-left: 4px solid var(--coral); background: var(--sand);
+  border-radius: 10px; padding: 14px 16px; margin: 18px 0; font-size: .92rem; }
+.callout.tip { border-color: var(--teal); }
+.callout strong { color: var(--navy); }
+
+/* ---------- Tables (calendars, quick lists) ---------- */
+.tablewrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--line);
+  box-shadow: var(--shadow); }
+table { border-collapse: collapse; width: 100%; min-width: 560px; background: var(--card); }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line);
+  font-size: .9rem; vertical-align: top; }
+thead th { background: var(--navy-deep); color: #fff; font-size: .78rem;
+  text-transform: uppercase; letter-spacing: .06em; position: sticky; top: 0; }
+tbody tr:hover { background: color-mix(in srgb, var(--teal-soft) 50%, transparent); }
+td .mo { font-weight: 700; color: var(--coral); }
+
+/* ---------- Calendar chips ---------- */
+.calgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+@media (max-width: 860px){ .calgrid { grid-template-columns: repeat(2,1fr);} }
+@media (max-width: 520px){ .calgrid { grid-template-columns: 1fr;} }
+.mcard { background: var(--card); border:1px solid var(--line); border-radius: 14px;
+  padding: 14px; box-shadow: var(--shadow); }
+.mcard h4 { margin:0 0 8px; color: var(--coral); font-family: var(--serif);
+  font-size: 1.05rem; border-bottom: 1px dashed var(--line); padding-bottom: 6px; }
+.mcard ul { margin: 0; padding-left: 16px; font-size: .84rem; }
+.mcard li { margin: 4px 0; }
+
+/* ---------- Anchor list / TOC ---------- */
+.toc { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 26px 0; }
+@media (max-width: 860px){ .toc { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px){ .toc { grid-template-columns: 1fr; } }
+.toc a { display: flex; gap: 10px; align-items: center; background: var(--card);
+  border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+  color: var(--navy); font-weight: 600; font-size: .92rem; box-shadow: var(--shadow); }
+.toc a:hover { text-decoration: none; border-color: var(--teal); transform: translateY(-1px); }
+.toc a .ic { font-size: 1.3rem; }
+
+/* ---------- Library hub cards (index) ---------- */
+.hub { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 28px; }
+@media (max-width: 900px){ .hub { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px){ .hub { grid-template-columns: 1fr; } }
+.hubcard { display: block; background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow);
+  color: var(--ink); transition: transform .15s ease, border-color .15s ease; }
+.hubcard:hover { text-decoration: none; transform: translateY(-3px); border-color: var(--teal); }
+.hubcard .ic { font-size: 2rem; display:block; margin-bottom: 10px; }
+.hubcard h3 { margin: 0 0 6px; color: var(--navy); }
+.hubcard p { margin: 0; color: var(--ink-soft); font-size: .9rem; }
+.hubcard .arrow { color: var(--coral); font-weight: 700; margin-top: 12px; display:inline-block; }
+
+/* ---------- Legend ---------- */
+.legend { display:flex; flex-wrap:wrap; gap:8px; margin: 16px 0 4px; }
+
+/* ---------- Footer ---------- */
+footer { border-top: 1px solid var(--line); background: var(--sand);
+  padding: 30px 0; margin-top: 60px; color: var(--ink-soft); font-size: .85rem; }
+footer .wrap { display:flex; flex-wrap:wrap; gap: 14px; justify-content: space-between; }
+footer a { color: var(--teal); }
+
+/* ---------- Misc ---------- */
+.small { font-size: .8rem; color: var(--ink-soft); }
+.divider { height:1px; background: var(--line); border:0; margin: 34px 0; }
+ul.clean { list-style: none; padding-left: 0; }
+ul.clean li { padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.updated { font-size:.78rem; color: var(--ink-soft); }
+
+/* ---------- "Who this is for" profile cards ---------- */
+.profiles { display:grid; grid-template-columns: repeat(4,1fr); gap:16px; margin-top:24px; }
+@media (max-width: 980px){ .profiles { grid-template-columns:1fr 1fr; } }
+@media (max-width: 560px){ .profiles { grid-template-columns:1fr; } }
+.profile { background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:20px 18px; box-shadow:var(--shadow); border-top:4px solid var(--teal); }
+.profile.p-you  { border-top-color: var(--teal); }
+.profile.p-teen { border-top-color: #c04a6b; }
+.profile.p-dog  { border-top-color: #a97b3f; }
+.profile.p-all  { border-top-color: var(--gold); }
+.profile .pic { font-size:1.7rem; display:block; margin-bottom:8px; }
+.profile h3 { margin:0 0 6px; font-size:1.08rem; }
+.profile p { margin:0 0 10px; font-size:.87rem; color:var(--ink-soft); }
+.profile ul { margin:0; padding-left:16px; font-size:.85rem; }
+.profile li { margin:4px 0; }
+
+/* ---------- Playbooks (ready-made plans) ---------- */
+.playbooks { display:grid; grid-template-columns: repeat(3,1fr); gap:16px; margin-top:22px; }
+@media (max-width: 980px){ .playbooks { grid-template-columns:1fr 1fr; } }
+@media (max-width: 620px){ .playbooks { grid-template-columns:1fr; } }
+.playbook { background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:18px; box-shadow:var(--shadow); position:relative; }
+.playbook .pbwho { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em;
+  color:var(--coral); margin:0 0 4px; }
+.playbook h4 { margin:0 0 10px; font-family:var(--serif); color:var(--navy); font-size:1.12rem; }
+.playbook ol { margin:0; padding-left:18px; font-size:.86rem; }
+.playbook ol li { margin:6px 0; }
+.playbook .pbcost { display:inline-block; margin-top:12px; font-size:.74rem; font-weight:700;
+  background:var(--teal-soft); color:var(--teal); border-radius:999px; padding:3px 10px; }
+
+/* ---------- "This month" highlight on the year calendar ---------- */
+.mcard.now { border-color: var(--coral); box-shadow: 0 0 0 2px color-mix(in srgb, var(--coral) 35%, transparent), var(--shadow); }
+.mcard.now h4::after { content:"← this month"; font-family:var(--sans); font-size:.64rem;
+  font-weight:700; color:var(--coral); margin-left:8px; letter-spacing:.06em; }
+
+@media print {
+  .topbar, footer .backlink { display:none; }
+  body { background:#fff; }
+  .card, .mcard, .tablewrap { box-shadow:none; }
+  a { color: inherit; text-decoration: none; }
+}
+
+/* ===== all-in-one app additions ===== */
+html{scroll-padding-top:118px;}
+[hidden]{display:none !important;}
+.navlinks a{cursor:pointer;}
+.navlinks a.active{background:var(--navy-deep);color:#fff;}
+
+.filterbar{position:sticky;top:60px;z-index:40;background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.filterbar .wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px;}
+.filterbar .flabel{font-size:.78rem;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em;margin-right:2px;}
+.chip{font-size:.82rem;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--ink);
+  padding:7px 14px;border-radius:999px;cursor:pointer;transition:all .12s ease;font-family:var(--sans);}
+.chip:hover{border-color:var(--teal);}
+.chip.on{background:var(--teal);color:#fff;border-color:var(--teal);}
+.fcount{margin-left:auto;font-size:.8rem;color:var(--ink-soft);}
+
+/* home picker */
+.pickgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:6px 0 8px;}
+@media(max-width:980px){.pickgrid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.pickgrid{grid-template-columns:1fr;}}
+.pick{display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:20px 18px;box-shadow:var(--shadow);color:var(--ink);
+  transition:transform .14s ease,border-color .14s ease;}
+.pick:hover{text-decoration:none;transform:translateY(-3px);border-color:var(--teal);}
+.pick .pic{font-size:1.9rem;}
+.pick .plabel{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:1.22rem;}
+.pick .parrow{color:var(--coral);font-weight:700;font-size:.85rem;}
+
+/* mobile: filterbar sits under the taller two-row topbar */
+@media(max-width:820px){
+  html{scroll-padding-top:160px;}
+  .filterbar{top:91px;}
+  .filterbar .wrap{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .filterbar .wrap::-webkit-scrollbar{display:none;}
+  .chip{flex:0 0 auto;white-space:nowrap;}
+  .fcount{display:none;}
+}
+
+.guidehead{margin:6px 0 8px;padding-top:8px;}
+.guidehead .guidetitle{font-size:1.9rem;margin:4px 0 0;}
+.backtop{margin:26px 0 0;}
+.backtop a{display:inline-block;font-size:.85rem;color:var(--teal);font-weight:700;}
+.homeintro{font-size:1.05rem;color:var(--ink-soft);max-width:64ch;margin:2px 0 18px;}
+.nowline{margin:14px 0 0;font-size:.95rem;color:var(--coral-2);font-weight:600;}
+
+
+/* ===== Natick edition additions ===== */
+.tag.close { background:#e9f2ea; color:#2e7a53; border-color:#c7dfcd; }
+.tag.kids  { background:#fdf2e3; color:#b9741a; border-color:#f0dcbb; }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .tag.close{background:#12301f;color:#7ed3a3;border-color:#1e4d33}
+  :root:not([data-theme="light"]) .tag.kids{background:#39290f;color:#e6b76c;border-color:#584019}
+}
+:root[data-theme="dark"] .tag.close{background:#12301f;color:#7ed3a3;border-color:#1e4d33}
+:root[data-theme="dark"] .tag.kids{background:#39290f;color:#e6b76c;border-color:#584019}
+
+/* drive-time ring strip */
+.rings { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:22px 0 6px; }
+@media(max-width:900px){ .rings{grid-template-columns:1fr 1fr;} }
+@media(max-width:520px){ .rings{grid-template-columns:1fr;} }
+.ring { background:var(--card); border:1px solid var(--line); border-left:5px solid var(--teal);
+  border-radius:12px; padding:13px 15px; box-shadow:var(--shadow); }
+.ring .rt { font-family:var(--serif); font-weight:700; color:var(--navy); font-size:1rem; margin:0 0 3px; }
+.ring p { margin:0; font-size:.82rem; color:var(--ink-soft); }
+.ring.r2 { border-left-color:var(--gold); }
+.ring.r3 { border-left-color:var(--coral); }
+.ring.r4 { border-left-color:#7a4fb0; }
+
+/* verification / source honesty note */
+.vnote { font-size:.78rem; color:var(--ink-soft); font-style:italic; margin-top:10px; }
+
+/* person hero tint */
+.profile.p-jul { border-top-color:#2e7a53; }
+.profile.p-gra { border-top-color:#7a4fb0; }
+.profile.p-boy { border-top-color:#c1553b; }
+.profile.p-fam { border-top-color:var(--gold); }
+
+/* compact definition rows */
+dl.facts { margin:10px 0 0; font-size:.86rem; }
+dl.facts dt { font-weight:700; color:var(--navy); margin-top:8px; }
+dl.facts dd { margin:2px 0 0; color:var(--ink-soft); }
+
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#home">🌿 Natick &amp; MetroWest <span class="dot">·</span> A Field Guide</a>
+    <nav class="navlinks"><a href="#home">Start</a><a href="#jul">For Julia</a><a href="#gra">For Grafton</a><a href="#boy">For the Boys</a><a href="#spo">Sports &amp; Lessons</a><a href="#out">Outdoors</a><a href="#eat">Eats</a><a href="#evt">Events</a><a href="#mak">Makers</a><a href="#day">Day Trips</a><a href="#mon">Calendar</a></nav>
+  </div>
+</header>
+
+<div class="filterbar" id="filterbar" hidden>
+  <div class="wrap">
+    <span class="flabel">Filter</span>
+    <button class="chip on" data-f="all">Everything</button>
+    <button class="chip" data-f="free">Free</button>
+    <button class="chip" data-f="cheap">Under $25</button>
+    <button class="chip" data-f="close">15 min from Natick</button>
+    <button class="chip" data-f="kids">Good with kids</button>
+    <button class="chip" data-f="dog">Dog OK</button>
+    <span class="fcount" id="fcount"></span>
+  </div>
+</div>
+
+<main>
+<section class="guidesec" id="home" data-guide>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Built for one family · Natick, Massachusetts</p>
+      <h1>The good stuff, measured in minutes from your driveway</h1>
+      <p>Not a tourist list. This is the second layer: the places you drive past, the ones that never make the "25 Best Things To Do in Boston" posts, and the ones you'd only find if someone told you. Organized by how far you actually have to go.</p>
+      <p class="nowline" id="nowline"></p>
+    </div>
+    <div class="wave"></div>
+  </section>
+
+  <div class="wrap">
+    <section class="section" id="home-start">
+      <p class="kicker">Start here</p>
+      <h2><span class="ic">🧭</span> Pick a person, or pick a distance</h2>
+      <p class="lede">Every page filters by price, distance, kid-friendliness, and whether the dog can come. If you only read one thing tonight, read the three cards under "This week."</p>
+
+      <div class="pickgrid">
+        <a class="pick" href="#jul"><span class="pic">🌱</span><span class="plabel">For Julia</span><span class="small">Work-break spots, gardens and native plants, quiet-nice spas, design and decluttering, naturalist walks.</span><span class="parrow">Open →</span></a>
+        <a class="pick" href="#gra"><span class="pic">🎸</span><span class="plabel">For Grafton</span><span class="small">Venues and the jam circuit, free shows, record and gear shops, and roads you probably haven't ridden.</span><span class="parrow">Open →</span></a>
+        <a class="pick" href="#boy"><span class="pic">🎲</span><span class="plabel">For the Boys</span><span class="small">Level99 done properly, D&amp;D tables, robotics and game design, arcades, and a whole reptile world.</span><span class="parrow">Open →</span></a>
+        <a class="pick" href="#spo"><span class="pic">⛵</span><span class="plabel">Sports &amp; Lessons</span><span class="small">Sailing on Lake Cochituate, lacrosse, soccer, junior golf, climbing, skiing.</span><span class="parrow">Open →</span></a>
+      </div>
+      <div class="pickgrid" style="margin-top:16px">
+        <a class="pick" href="#out"><span class="pic">🌲</span><span class="plabel">Outdoors</span><span class="small">Trails, water, farms, and the four things within ten minutes that most people never walk.</span><span class="parrow">Open →</span></a>
+        <a class="pick" href="#eat"><span class="pic">🍽️</span><span class="plabel">Eats</span><span class="small">Italian and American that the boys will actually eat, plus the adventurous half a mile away.</span><span class="parrow">Open →</span></a>
+        <a class="pick" href="#evt"><span class="pic">🎪</span><span class="plabel">Events</span><span class="small">Fairs, festivals, town celebrations, parades, markets, and how to find the civic stuff.</span><span class="parrow">Open →</span></a>
+        <a class="pick" href="#mak"><span class="pic">🏺</span><span class="plabel">Makers</span><span class="small">Pottery, glass, wood, fiber. One-night classes and real multi-week studios.</span><span class="parrow">Open →</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="home-rings">
+      <p class="kicker">How this is organized</p>
+      <h2><span class="ic">🎯</span> Four rings out from Natick</h2>
+      <p class="lede">Everything in this guide is tagged by which ring it sits in. Drive times are honest off-peak estimates from Natick Center, not optimistic ones.</p>
+      <div class="rings">
+        <div class="ring"><p class="rt">Ring 1 · 0–15 min</p><p>Natick, Framingham, Sherborn, Wellesley, Wayland, Ashland, Dover. Weeknight range. No planning required.</p></div>
+        <div class="ring r2"><p class="rt">Ring 2 · 15–40 min</p><p>Hopkinton, Concord, Sudbury, Medfield, Needham, Westborough, Marlborough, plus the near edge of Boston.</p></div>
+        <div class="ring r3"><p class="rt">Ring 3 · 40–90 min</p><p>Worcester, the North Shore, Cape Ann, Providence, southern New Hampshire, central Mass.</p></div>
+        <div class="ring r4"><p class="rt">Ring 4 · Worth the trip</p><p>Berkshires, Vermont, Maine, the Cape. Overnight territory; only the ones worth the drive are listed.</p></div>
+      </div>
+      <div class="callout tip"><strong>Getting into Boston without the misery:</strong> the Framingham/Worcester commuter rail runs from Natick Center and West Natick straight to Back Bay and South Station. For anything inside the city, that beats driving and parking almost every time. The Cochituate Rail Trail now connects downtown Natick to the Natick Center station platform, so bike-to-train is a real option.</div>
+    </section>
+
+    <section class="section" id="home-playbooks">
+      <p class="kicker">Ready-made plans</p>
+      <h2><span class="ic">📋</span> Nine plans you can execute without thinking</h2>
+      <p class="lede">Each one is a whole outing already sequenced. Pick one, don't build one.</p>
+      <div class="playbooks">
+        <div class="playbook">
+          <p class="pbwho">Whole family · Saturday</p>
+          <h4>The Natick loop that never gets old</h4>
+          <ol>
+            <li>Farmers Market on the Common, 9am–1pm, Saturdays in season.</li>
+            <li>Walk the Cochituate Rail Trail from Natick Center toward Saxonville.</li>
+            <li>Lunch downtown, then Morse Institute Library to grab a museum pass for later.</li>
+            <li>Afternoon at Lookout Farm in South Natick, U-pick plus the taproom for the adults.</li>
+          </ol>
+          <span class="pbcost">Under $40 for four</span>
+        </div>
+        <div class="playbook">
+          <p class="pbwho">Grafton · Any Thursday</p>
+          <h4>Ride, then a listening room</h4>
+          <ol>
+            <li>Late-afternoon Dover–Sherborn–Medfield loop from the Chickering School lot.</li>
+            <li>Shower, then walk into Natick Center.</li>
+            <li>Show at TCAN, 14 Summer St. Small room, good sightlines, no bad seats.</li>
+            <li>Late plate somewhere on Main Street.</li>
+          </ol>
+          <span class="pbcost">$25–45</span>
+        </div>
+        <div class="playbook">
+          <p class="pbwho">Julia · Weekday, 90 minutes</p>
+          <h4>The workday reset</h4>
+          <ol>
+            <li>Move the laptop to Natick CoWorking or a table at Heirloom for two hours.</li>
+            <li>Walk to the Common; go around the block the long way.</li>
+            <li>Garden in the Woods if it's April–October: 45 acres, ten minutes away, almost never crowded midweek.</li>
+            <li>Home before the school bus.</li>
+          </ol>
+          <span class="pbcost">Free–$18</span>
+        </div>
+        <div class="playbook">
+          <p class="pbwho">The boys · Rainy Saturday</p>
+          <h4>Level99 without the rookie mistakes</h4>
+          <ol>
+            <li>Go on a weekday or a non-holiday Sunday morning; the Saturday price is the top of the range.</li>
+            <li>An adult 25 or older has to be with anyone under 18. Plan the adult in, not around.</li>
+            <li>Start in the far corner rooms; everyone else clusters at the entrance.</li>
+            <li>Under-18s must be out by 10pm on Friday and Saturday. Don't plan a late finish.</li>
+          </ol>
+          <span class="pbcost">~$45–60/person</span>
+        </div>
+        <div class="playbook">
+          <p class="pbwho">Emmet · A real errand</p>
+          <h4>The reptile day</h4>
+          <ol>
+            <li>Check neherp.com for the next Massachusetts Reptile Expo date in Hanover.</li>
+            <li>Go with a list and a budget: 150+ tables, and the good enclosure and bioactive-substrate deals are why you go.</li>
+            <li>Talk to the bioactive vendors specifically; they'll troubleshoot a live setup on the spot.</li>
+            <li>Home by way of a stop at Broadmoor to look at the native turtles and snakes.</li>
+          </ol>
+          <span class="pbcost">$10–15 entry</span>
+        </div>
+        <div class="playbook">
+          <p class="pbwho">The adults · Date night</p>
+          <h4>Cheese first, then everything else</h4>
+          <ol>
+            <li>Wasik's in Wellesley before 5pm. Ask what's peaking; they age in a cave under the shop.</li>
+            <li>Add olives and one thing you can't identify.</li>
+            <li>Eat in South Framingham: Little Brazil, and it is not a nickname.</li>
+            <li>Finish at a Jack's Abby beer hall table if there's a band on.</li>
+          </ol>
+          <span class="pbcost">$60–90</span>
+        </div>
+        <div class="playbook">
+          <p class="pbwho">Whole family · August</p>
+          <h4>Fair season, done in order</h4>
+          <ol>
+            <li>Bolton Fair, Aug 14–16, Lancaster Fairgrounds. Small, agricultural, real.</li>
+            <li>Marshfield Fair, Aug 21–30. Ten days, big midway, demolition derby.</li>
+            <li>Middlesex County 4-H Fair, Aug 28–30, Westford. Kid-run, non-commercial, the opposite of a midway.</li>
+            <li>Topsfield, Oct 2–12, if you want the oldest one in America.</li>
+          </ol>
+          <span class="pbcost">$10–20/person</span>
+        </div>
+        <div class="playbook">
+          <p class="pbwho">Grafton + a kid</p>
+          <h4>The bike-and-train trick</h4>
+          <ol>
+            <li>Ride the Cochituate Rail Trail to Natick Center station.</li>
+            <li>Train in to Back Bay with the bikes.</li>
+            <li>Ride the Charles River paths, cross at the locks, come back the other bank.</li>
+            <li>Train home. No parking, no traffic, and the kid thinks it was an adventure.</li>
+          </ol>
+          <span class="pbcost">~$14 round trip</span>
+        </div>
+        <div class="playbook">
+          <p class="pbwho">Everyone · One hour</p>
+          <h4>The dog gets a real walk</h4>
+          <ol>
+            <li>Noanet Woodlands in Dover: Trustees property, dogs may be off leash there.</li>
+            <li>Park carefully. The adjacent Caryl Park is town-owned Dover land and does <em>not</em> allow off leash.</li>
+            <li>Climb to the Noanet Peak overlook; on a clear day you can see the Boston skyline.</li>
+            <li>Rocky Narrows in Sherborn as the alternate when the lot is full.</li>
+          </ol>
+          <span class="pbcost">Free</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="home-year-calendar">
+      <p class="kicker">The year at a glance</p>
+      <h2><span class="ic">🗓️</span> What each month is actually for</h2>
+      <div class="calgrid">
+        <div class="mcard"><h4>January</h4><ul><li>Night skiing at Nashoba, 45 minutes away</li><li>Weston Ski Track under lights</li><li>Indoor climbing season at Central Rock</li></ul></div>
+        <div class="mcard"><h4>February</h4><ul><li>School vacation week: Level99 charges holiday pricing, plan around it</li><li>Tubing hill at Nashoba, the biggest in New England</li><li>Seed catalogs and the Native Plant Trust winter classes</li></ul></div>
+        <div class="mcard"><h4>March</h4><ul><li>Maple sugaring at Natick Community Organic Farm</li><li>Last cheap ski nights at Wachusett</li><li>Boston Flower Show season</li></ul></div>
+        <div class="mcard"><h4>April</h4><ul><li>Garden in the Woods reopens mid-month</li><li>Patriots' Day: Concord and Lexington reenactments</li><li>Lacrosse and spring soccer start</li></ul></div>
+        <div class="mcard"><h4>May</h4><ul><li>Natick Boathouse opens on Lake Cochituate</li><li>Native plant sales; the good ones sell out in a weekend</li><li>Town common concert series schedules post</li></ul></div>
+        <div class="mcard"><h4>June</h4><ul><li>Natick Nights street fairs begin</li><li>Massachusetts Reptile Expo, spring edition</li><li>Farmers markets back on the Common</li></ul></div>
+        <div class="mcard"><h4>July</h4><ul><li>Levitate in Marshfield, Lowell Folk Festival (free)</li><li>Framingham Friday Night Concerts, 6–8pm</li><li>U-pick peaches start at Lookout Farm</li></ul></div>
+        <div class="mcard"><h4>August</h4><ul><li>Pan-Mass Challenge weekend</li><li>Natick Nights, Aug 6. Bolton, Marshfield, and 4-H fairs</li><li>D2R2 gravel randonnée, Aug 22</li></ul></div>
+        <div class="mcard"><h4>September</h4><ul><li>Natick Days on the Common, Sept 19</li><li>Apple picking starts for real</li><li>The Big E in West Springfield</li></ul></div>
+        <div class="mcard"><h4>October</h4><ul><li>Topsfield Fair, America's oldest</li><li>HONK! in Somerville, then the Cambridge parade</li><li>Peak foliage rides on the dirt roads west</li></ul></div>
+        <div class="mcard"><h4>November</h4><ul><li>Holiday craft fairs and church bazaars</li><li>Reptile Expo, fall edition</li><li>Last good gravel before the salt goes down</li></ul></div>
+        <div class="mcard"><h4>December</h4><ul><li>Tree lightings on every town common</li><li>Snowport and the Boston holiday markets</li><li>Indoor pottery session sign-ups for winter</li></ul></div>
+      </div>
+    </section>
+
+    <section class="section" id="home-honest">
+      <h2><span class="ic">✓</span> How to trust this</h2>
+      <div class="callout"><strong>Verify before you drive.</strong> Everything here was compiled in July 2026 from official town, state, organization, and venue sources. Dates for annual events are the confirmed 2026 dates where one was published, and marked as approximate where it wasn't. Hours, prices, and seasonal schedules change constantly, and small places close. Every entry names its source so you can check in ten seconds.</div>
+      <p class="small">Where something is a judgment call rather than a fact, it says so. Where a place is genuinely well known, it's included anyway but flagged, because leaving out the obvious answer is its own kind of unhelpful.</p>
+    </section>
+  </div>
+</section>
+<section class="guidesec" id="jul" data-guide hidden>
+  <div class="wrap">
+    <div class="guidehead">
+      <p class="kicker">Guide 1</p>
+      <h2 class="guidetitle" style="font-family:var(--serif);color:var(--navy)">For Julia</h2>
+      <p class="homeintro">Working from home is great until the walls start talking. This page is built around leaving the house for an hour: somewhere to work, somewhere to be quiet, plants to look at and buy, houses to be nosy about, and the biology stuff that most people around here don't know exists.</p>
+    </div>
+
+    <nav class="toc">
+      <a href="#jul-work"><span class="ic">💻</span> Work somewhere else</a>
+      <a href="#jul-quiet"><span class="ic">💆</span> Quiet, nice, not $300</a>
+      <a href="#jul-garden"><span class="ic">🌿</span> Plants and gardens</a>
+      <a href="#jul-design"><span class="ic">🛋️</span> Home design &amp; salvage</a>
+      <a href="#jul-declutter"><span class="ic">📦</span> Decluttering, solved</a>
+      <a href="#jul-bio"><span class="ic">🔬</span> For the biologist</a>
+    </nav>
+
+    <section class="section" id="jul-work">
+      <p class="kicker">Workday</p>
+      <h2><span class="ic">💻</span> Places to work that aren't your kitchen</h2>
+      <p class="lede">Ranked by what they're actually good for. Downtown Natick is walkable, so most of these are a two-minute stroll from each other.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Natick CoWorking</h4>
+          <p class="where">📍 One South Avenue, 2nd floor, Natick Center · Ring 1</p>
+          <p>The real answer if the problem is focus rather than boredom. Quiet, in the heart of the Cultural District, five minutes from the commuter rail. Membership tiers, but they give <strong>two complimentary half-day passes</strong> to try the space first, which makes this a zero-risk experiment.</p>
+          <p class="small">508-203-7880 · scott@natickcoworking.com</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Free trial</span></div>
+        </div>
+        <div class="card">
+          <h4>Metroworks — Natick Center</h4>
+          <p class="where">📍 South Ave, directly across from Natick Center MBTA · Ring 1</p>
+          <p>The other downtown option, and the one to pick if you ever want to take the train in afterward. Day passes available à la carte; some memberships bundle five day passes a month, which is about right for a "twice a week out of the house" habit.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Day pass</span></div>
+        </div>
+        <div class="card">
+          <h4>Heirloom</h4>
+          <p class="where">📍 Downtown Natick · Ring 1</p>
+          <p>The nice coffee in the nice part of downtown. Best for a focused 90 minutes and a change of scenery, not a full day — it's a café, and the table turnover is real. Go before 11 or after 2.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Under $25</span></div>
+        </div>
+        <div class="card">
+          <h4>Saxonville Mills Café &amp; Roastery</h4>
+          <p class="where">📍 Saxonville, Framingham · Ring 1</p>
+          <p>Inside a converted mill, which is half the appeal. They roast on site. It's also right at the Framingham end of the Cochituate Rail Trail, so this is the natural "bike there, work an hour, bike back" destination.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Under $25</span></div>
+        </div>
+        <div class="card">
+          <h4>Morse Institute Library</h4>
+          <p class="where">📍 14 East Central St, Natick · Ring 1</p>
+          <p>Underrated as an office. Free, silent when you need it, and while you're there you can borrow a <strong>museum pass</strong> — Natick's are issued as e-coupons, so you can grab one from your phone and use it that weekend. Check the pass calendar before you go; the popular museums book out.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Free</span></div>
+        </div>
+        <div class="card">
+          <h4>Workbar Framingham</h4>
+          <p class="where">📍 111 Speen St, Framingham · Ring 1</p>
+          <p>The full-amenity option: private offices, meeting rooms, a podcast studio. Day pass runs about $59, so it's the "I have four calls and need a door" answer rather than the everyday one.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">~$59/day</span></div>
+        </div>
+      </div>
+      <div class="callout tip"><strong>The 20-minute version.</strong> If the day is too packed to relocate, the walkable loop from downtown Natick around the Common and back is about a mile. Garden in the Woods is ten minutes away and is genuinely empty on a Tuesday morning in May.</div>
+      <p class="vnote">Café hours and coworking pricing move around. Coworking rates confirmed July 2026; café details are directional — call ahead if you're driving specifically.</p>
+    </section>
+
+    <section class="section" id="jul-quiet">
+      <p class="kicker">Ninety minutes to yourself</p>
+      <h2><span class="ic">💆</span> Good, close, and not resort-priced</h2>
+      <p class="lede">The brief here was affordable-but-nice, which in this area means avoiding both the mall chains and the Wellesley prices. These are the middle.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Le Belle Day Spa</h4>
+          <p class="where">📍 Downtown Natick · Ring 1</p>
+          <p>The walk-to-it option. Massage (Swedish, hot stone, prenatal, couples), facials, and nails under one roof, so it works as a single-stop reset rather than a project. Being downtown means you can pair it with lunch and be back inside two hours.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Moderate</span></div>
+        </div>
+        <div class="card">
+          <h4>Spavia Day Spa — Natick</h4>
+          <p class="where">📍 1245 Worcester St, Natick · Ring 1</p>
+          <p>Deliberately positioned as a full spa experience at a non-resort price: massage, facials, body wraps and scrubs, waxing. Membership pricing is where the value is if this becomes a monthly thing rather than a once-a-year thing.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Moderate</span></div>
+        </div>
+        <div class="card">
+          <h4>Jesamondo Salon &amp; Spa</h4>
+          <p class="where">📍 154 E Central St, Natick (also Framingham) · Ring 1</p>
+          <p>The one people quietly rate highest for pedicures specifically. Their Exclusive Pedicure runs about 60 minutes (roughly $64 and up) with a thermal wrap or cooling masque and a long leg-and-foot massage. Book the long one; the short one misses the point.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">~$64+</span></div>
+        </div>
+        <div class="card">
+          <h4>Skinkind</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>Small, facial-focused, results-oriented rather than atmospheric. The right pick if the goal is actual skin care rather than a spa afternoon.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Moderate</span></div>
+        </div>
+        <div class="card">
+          <h4>A &amp; A Nails &amp; Spa</h4>
+          <p class="where">📍 Natick · Ring 1</p>
+          <p>The everyday one: large, clean, easy parking, and the pedicures come with a proper foot and leg massage instead of a token thirty seconds. No appointment drama.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Under $25 base</span></div>
+        </div>
+        <div class="card">
+          <h4>New Nails Spa</h4>
+          <p class="where">📍 60 Worcester Rd #7, Framingham · Ring 1</p>
+          <p>Framingham's value pick. Straightforward, well-reviewed, and priced like a neighborhood salon rather than a destination.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Affordable</span></div>
+        </div>
+      </div>
+      <p class="vnote">Spa and salon pricing changes frequently and review-site rankings shift; treat the specific dollar figures as of July 2026 and confirm when booking.</p>
+    </section>
+
+    <section class="section" id="jul-garden">
+      <p class="kicker">The best thing about living here</p>
+      <h2><span class="ic">🌿</span> Plants, gardens, and the people who know things</h2>
+      <p class="lede">One of the most important native plant organizations in the country is ten minutes from the house. That is not a small thing.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Garden in the Woods · Native Plant Trust</h4>
+          <p class="where">📍 180 Hemenway Rd, Framingham · Ring 1</p>
+          <p>Forty-five acres of woodland botanical garden, and the headquarters of the <strong>oldest plant conservation organization in the United States</strong> — founded 1900 as the Society for the Protection of Native Plants, later the New England Wild Flower Society. More than 1,500 native species and cultivars on site, about 150 of them rare or endangered.</p>
+          <p>Open roughly mid-April through mid-October. There's an education center on the property and a serious class program: conservation and horticulture courses, field trips, lectures, symposia, and a certificate-track native plant studies program if you want to go deep rather than dabble.</p>
+          <p><strong>The part most people miss:</strong> the on-site nursery is one of the largest retail native plant nurseries in New England, growing local-ecotype plants. Not "native-ish" cultivars from a big grower. Actual regional genetics.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag season">Apr–Oct</span><span class="tag mod">Admission</span></div>
+        </div>
+        <div class="card">
+          <h4>Windy-Lo Nursery</h4>
+          <p class="where">📍 309 Eliot St, Natick · Ring 1</p>
+          <p>Started as a roadside stand more than fifty years ago and grew into the MetroWest garden resource. This is the local one — the place where the staff know what actually survives in Natick soil, which is worth more than a bigger selection.</p>
+          <div class="meta"><span class="tag close">15 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Russell's Garden Center</h4>
+          <p class="where">📍 Route 20, Wayland · Ring 1</p>
+          <p>Old-school in the best sense, and the one people drive past three other garden centers to reach. Good for the thing you can't find elsewhere, and worth a wander even without a list.</p>
+          <div class="meta"><span class="tag close">15 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Weston Nurseries</h4>
+          <p class="where">📍 93 East Main St, Hopkinton · Ring 2</p>
+          <p>In business since 1923 and the region's heavy hitter for trees and shrubs. Go here when the project is structural — a hedge, a specimen tree, a whole bed rebuilt — rather than for annuals.</p>
+          <div class="meta"><span class="tag mod">15–40 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Mahoney's Garden Center</h4>
+          <p class="where">📍 Wayland (plus other locations) · Ring 1</p>
+          <p>The dependable full-service option since 1959, growing much of its stock locally. Reliable rather than surprising, which is sometimes exactly what you want on a Saturday morning.</p>
+          <div class="meta"><span class="tag close">15 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Natick Garden Club</h4>
+          <p class="where">📍 Natick · Ring 1</p>
+          <p>A member club of the Garden Club Federation of Massachusetts, organized in Natick since 2004. The point of a garden club is not the flower arranging; it's plant swaps, people who have already killed the thing you're about to plant, and access to gardens you'd never otherwise walk through.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Low dues</span></div>
+        </div>
+      </div>
+      <div class="callout tip"><strong>Timing that matters:</strong> the good native plant sales sell out in a weekend, usually in May. Get on the Native Plant Trust mailing list in March, not May.</div>
+    </section>
+
+    <section class="section" id="jul-design">
+      <p class="kicker">Houses and the things in them</p>
+      <h2><span class="ic">🛋️</span> Design, salvage, and secondhand worth the drive</h2>
+      <p class="lede">The good furniture around here moves through consignment, not retail. These are the rooms to walk regularly rather than once.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Furniture Consignment Gallery</h4>
+          <p class="where">📍 104 Worcester St, Natick · Ring 1</p>
+          <p>The nearest serious consignment floor, and the one to check on a rotation rather than a mission. Inventory turns fast, which is the whole game: the piece you want was not there last week and won't be there next week.</p>
+          <div class="meta"><span class="tag close">15 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Buy &amp; Consign</h4>
+          <p class="where">📍 64 Waverly St, Framingham · Ring 1</p>
+          <p>Broader and scrappier: vintage and current furniture, rugs, household goods, records, books, electronics. Lower price floor than a curated gallery, higher hit rate on the odd perfect thing.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Cheap end</span></div>
+        </div>
+        <div class="card">
+          <h4>Thoreauly Antiques</h4>
+          <p class="where">📍 27 Walden St, Concord · Ring 2</p>
+          <p>Vintage clothing, estate jewelry, Victorian smalls, art, and collectibles. Pair it with a Concord morning — the town is walkable and the Cheese Shop is right there.</p>
+          <div class="meta"><span class="tag mod">15–40 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Tables to Teapots</h4>
+          <p class="where">📍 240 Arlington St, West Acton · Ring 2</p>
+          <p>Antiques, lamps, mirrors, pictures, accessories, whole collections. The kind of place that rewards a slow second lap.</p>
+          <div class="meta"><span class="tag mod">15–40 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Habitat MetroWest ReStore</h4>
+          <p class="where">📍 310 Pond St (Route 126), Ashland · Ring 1</p>
+          <p>Both directions at once: donate the old vanity, and buy someone else's cabinet pulls, doors, light fixtures, and lumber for a fraction of retail. The single most useful address on this page if there's an actual renovation happening. 508-799-9259.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Cheap</span></div>
+        </div>
+        <div class="card">
+          <h4>Danforth Art Museum</h4>
+          <p class="where">📍 Jonathan Maynard Building, Framingham Centre Common · Ring 1</p>
+          <p>Not shopping, but the best local input for a design eye: American art from the 19th century to now, plus rotating regional contemporary shows and an annual juried exhibition. It's attached to Framingham State and it's ten minutes away, which almost nobody local seems to act on.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Low admission</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="jul-declutter">
+      <p class="kicker">The part that actually blocks people</p>
+      <h2><span class="ic">📦</span> Getting rid of things without a landfill run</h2>
+      <p class="lede">Decluttering stalls at the same place every time: the pile of good-but-unwanted stuff sitting in the garage because nobody knows who takes it. Here's who takes it.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>What you have</th><th>Where it goes</th><th>How</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Usable furniture</strong></td><td>New Life Furniture Bank of MA</td><td>They run pickup service covering Natick, Dover, Sherborn, Wellesley, Medfield, Millis, Needham, Norwood and more. Furniture goes to families leaving shelter. Schedule online.</td></tr>
+            <tr><td><strong>Building materials, fixtures, cabinets, doors</strong></td><td>Habitat MetroWest ReStore, Ashland</td><td>310 Pond St (Rt 126). Call 508-799-9259 for larger drop-offs. Tax-deductible.</td></tr>
+            <tr><td><strong>Mixed household goods, kitchen, linens</strong></td><td>Household Goods (Acton)</td><td>Volunteer-run warehouse that outfits homes for people starting over. Check their current accept list before loading the car; it's specific.</td></tr>
+            <tr><td><strong>Anything, in bulk, with a pickup</strong></td><td>Salvation Army</td><td>Statewide pickup, 800-958-7825. The lowest-friction option when the goal is simply "gone this week."</td></tr>
+            <tr><td><strong>Good clothing and accessories</strong></td><td>Local consignment</td><td>Consignment pays you and keeps it in circulation, but it's slow. If speed matters more than money, donate.</td></tr>
+            <tr><td><strong>Furniture you want to convert to cash</strong></td><td>Furniture Consignment Gallery, Natick</td><td>They set the price and take a cut. Bring photos before you bring the sofa.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout"><strong>The rule that unsticks it:</strong> pick the exit route before you start sorting. A pile with no scheduled pickup becomes a permanent feature. Book the New Life or Salvation Army pickup for a date <em>first</em>, then sort to fill it.</div>
+    </section>
+
+    <section class="section" id="jul-bio">
+      <p class="kicker">For the biology background</p>
+      <h2><span class="ic">🔬</span> The nerdier layer</h2>
+      <p class="lede">Field organizations in this region are old, serious, and much more open to newcomers than they look.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Boston Mycological Club</h4>
+          <p class="where">📍 Forays across eastern Massachusetts · Ring 1–3</p>
+          <p>The <strong>oldest mushroom club in the United States</strong>. Organized forays, identification sessions, and a membership that ranges from people who want to eat chanterelles to people studying fungal ecology. If the biology itch needs scratching, this is the highest-return membership on this page.</p>
+          <p class="small">bostonmyco.org</p>
+          <div class="meta"><span class="tag cheap">Low dues</span><span class="tag season">Fall peak</span></div>
+        </div>
+        <div class="card">
+          <h4>Broadmoor Wildlife Sanctuary</h4>
+          <p class="where">📍 Natick (Mass Audubon) · Ring 1</p>
+          <p>624 acres and nine miles of trail in your own town, including a 0.6-mile All Persons Trail. The adult program list is the real draw: owl prowls, canoe trips, birding walks, and seasonal natural-history sessions. Boardwalks through marsh mean turtles and herons at close range without effort.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Members free</span><span class="tag kids">Kids OK</span></div>
+        </div>
+        <div class="card">
+          <h4>Native Plant Trust conservation corps</h4>
+          <p class="where">📍 Framingham HQ, sites across New England · Ring 1</p>
+          <p>They run a volunteer conservation corps monitoring rare plant populations across New England, and manage several plant sanctuaries. This is real field botany with real data behind it, not a garden-tour volunteer slot.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Volunteer</span></div>
+        </div>
+        <div class="card">
+          <h4>Natick Community Organic Farm</h4>
+          <p class="where">📍 Natick · Ring 1</p>
+          <p>A nonprofit certified-organic farm running year-round hands-on education, open to all ages, on productive open space that's free to walk. Maple sugaring in March is the one to catch. Also the easiest place to get the boys doing something agricultural without calling it educational.</p>
+          <p class="small">natickfarm.org</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Free to walk</span><span class="tag kids">Kids</span></div>
+        </div>
+      </div>
+      <div class="callout tip"><strong>Overlap worth noticing:</strong> Broadmoor's owl prowls and the Mycological Club's fall forays are both things a thirteen-year-old will grudgingly admit were cool. They are not marketed to families, which is exactly why they work.</div>
+    </section>
+
+    <p class="backtop"><a href="#home">← Back to start</a></p>
+  </div>
+</section>
+<section class="guidesec" id="gra" data-guide hidden>
+  <div class="wrap">
+    <div class="guidehead">
+      <p class="kicker">Guide 2</p>
+      <h2 class="guidetitle" style="font-family:var(--serif);color:var(--navy)">For Grafton</h2>
+      <p class="homeintro">Two halves: rooms with music in them, and roads. The music half assumes a taste that runs through Phish and the Dead and out the other side into anything improvised. The bike half assumes you've already ridden the obvious stuff, so it skips the greatest hits and goes straight to the things people don't post about.</p>
+    </div>
+
+    <nav class="toc">
+      <a href="#gra-venues"><span class="ic">🎤</span> Rooms worth driving to</a>
+      <a href="#gra-jam"><span class="ic">💀</span> The jam &amp; Dead circuit</a>
+      <a href="#gra-free"><span class="ic">🆓</span> Free and outdoor music</a>
+      <a href="#gra-fest"><span class="ic">🎪</span> Festivals, ranked</a>
+      <a href="#gra-gear"><span class="ic">🎸</span> Records, gear, open mics</a>
+      <a href="#gra-rides"><span class="ic">🚴</span> Roads you haven't ridden</a>
+      <a href="#gra-gravel"><span class="ic">🪨</span> Gravel &amp; dirt</a>
+      <a href="#gra-events"><span class="ic">🏁</span> Rides worth entering</a>
+      <a href="#gra-shops"><span class="ic">🔧</span> Shops &amp; group rides</a>
+    </nav>
+
+    <section class="section" id="gra-venues">
+      <p class="kicker">Music, part one</p>
+      <h2><span class="ic">🎤</span> The rooms, from your front door outward</h2>
+      <p class="lede">A good small room beats a good big band. These are ordered by distance, and the first two are walking-distance-ish from Natick Center.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>TCAN — The Center for Arts in Natick</h4>
+          <p class="where">📍 14 Summer St, Natick Center · Ring 1</p>
+          <p>The home room. A converted firehouse running concerts, comedy, film, and community theater year-round, at a scale where the artist can see the audience. Historically it has also hosted a songwriter open mic and a regular jazz jam, which makes it a place to play and not only a place to watch.</p>
+          <p><strong>Why it matters:</strong> you can walk there, eat downtown first, and be home by 10:30. The friction is near zero, which is the actual deciding factor on a Tuesday.</p>
+          <p class="small">tcan.org</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Often under $40</span></div>
+        </div>
+        <div class="card">
+          <h4>Amazing Things Arts Center</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>The other MetroWest listening room, and the more intimate of the two. Folk, acoustic, world, and singer-songwriter programming in a space small enough that a quiet passage stays quiet. This is where touring acts play when they're too small for TCAN and too good for a bar.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Under $40</span></div>
+        </div>
+        <div class="card">
+          <h4>Sanctuary Cultural Arts Center</h4>
+          <p class="where">📍 82 Main St, Maynard · Ring 2</p>
+          <p>A historic church converted into a 330-capacity live music venue with a bar and lounge. The best-sounding small room in MetroWest, and the programming is deliberately broad — their 2026–27 calendar runs from the Blind Boys of Alabama to <strong>Playing Dead</strong>. Thirty minutes up Route 27 and 117.</p>
+          <p class="small">sanctuarymaynard.com</p>
+          <div class="meta"><span class="tag mod">15–40 min</span><span class="tag mod">$25–55</span></div>
+        </div>
+        <div class="card">
+          <h4>Jack's Abby Beer Hall &amp; Kitchen</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>Live music on select Saturdays, roughly 7–10pm, in a big beer hall with wood-fired pizza. Free to walk in, which makes it the lowest-commitment music night on this list. Their anniversary weekend in July turns into a full fairground event with bands, food, and games — that one is worth putting on the calendar as a family thing.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">No cover</span><span class="tag kids">Kids OK</span></div>
+        </div>
+        <div class="card">
+          <h4>Exhibit 'A' Brewing Company</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>Friday live music, comedy nights, beer dinners. Also the co-host, with School of Rock Natick, of the <strong>"Exhibit Yourself" open mic</strong> — see the gear section below. The overlap between "place Grafton would go anyway" and "place a kid can play his first real set" is unusually tight here.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">No cover</span></div>
+        </div>
+        <div class="card">
+          <h4>Indian Ranch</h4>
+          <p class="where">📍 Webster · Ring 3</p>
+          <p>Outdoor waterfront amphitheater on Webster Lake, about an hour southwest. Classic-rock-heavy summer bookings, lawn-and-lake setting, and a scale that feels like a festival without being one. Worth the drive when the bill is right.</p>
+          <div class="meta"><span class="tag season">Summer</span><span class="tag mod">40–90 min</span></div>
+        </div>
+        <div class="card">
+          <h4>The Palladium &amp; the Hanover Theatre</h4>
+          <p class="where">📍 Worcester · Ring 2–3</p>
+          <p>Worcester is the underrated music city here, and it's closer than Boston in traffic terms. The Palladium takes the loud bookings; the Hanover Theatre takes the seated ones. Between them plus Ralph's Chadwick Square Diner and Off The Rails (a proper listening room), Worcester covers a whole night out.</p>
+          <div class="meta"><span class="tag mod">40 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Boston, when it's worth it</h4>
+          <p class="where">📍 Commuter rail from Natick Center · Ring 2</p>
+          <p>Don't drive. The Framingham/Worcester line runs to Back Bay and South Station, which puts the Sinclair, Paradise, Roadrunner, and the Crystal Ballroom within a short ride or walk. Check the last outbound train before buying tickets — that's the whole calculation.</p>
+          <div class="meta"><span class="tag transit">Train</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gra-jam">
+      <p class="kicker">Music, part two</p>
+      <h2><span class="ic">💀</span> The jam and Dead circuit, specifically</h2>
+      <p class="lede">Massachusetts has an unusually dense Dead-cover ecosystem — dense enough that the Globe wrote a feature on it in January 2026. Here's how to plug into it rather than wait for something to show up on a ticket site.</p>
+
+      <div class="callout"><strong>Right now, this week:</strong> <strong>Phish plays Fenway Park on Friday July 31 and Saturday August 1, 2026</strong>, 6:30pm both nights, as part of the Fenway concert series. Four-ticket limit per show. If those are already gone, the resale market for a Fenway Phish run softens in the last 48 hours more often than it spikes.</div>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>How to actually find the shows</h4>
+          <p>The regional jam scene lives on band mailing lists and venue calendars, not on aggregators. The four that cover most of it: <strong>Sanctuary Maynard</strong>, <strong>TCAN</strong>, brewery calendars (Jack's Abby, Exhibit 'A'), and <strong>Kimball Farm in Westford</strong>, which books outdoor summer shows that nobody outside the area seems to know about.</p>
+          <div class="meta"><span class="tag free">Free intel</span></div>
+        </div>
+        <div class="card">
+          <h4>Deadbeat</h4>
+          <p class="where">📍 New England circuit · Ring 1–3</p>
+          <p>A long-running New England Grateful Dead jam band, playing rooms like Kimball Farm in Westford and Sanctuary in Maynard. Follow the band rather than a venue; the routing brings them within thirty minutes of Natick several times a year.</p>
+          <p class="small">bostondeadbeat.com</p>
+          <div class="meta"><span class="tag cheap">Usually cheap</span></div>
+        </div>
+        <div class="card">
+          <h4>Playing Dead</h4>
+          <p class="where">📍 On the Sanctuary Maynard 2026–27 calendar · Ring 2</p>
+          <p>Already booked into the best small room in MetroWest. If you only chase one tribute show this year, chase this pairing — the room is the reason.</p>
+          <div class="meta"><span class="tag mod">15–40 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Pink Talking Fish</h4>
+          <p class="where">📍 New England festival circuit · Ring 3–4</p>
+          <p>The hybrid that mashes Pink Floyd, Talking Heads, Phish and the Dead into one set. They anchor festival bills across New England, including the Dead of Summer festival in Vermont. Better live than the concept sounds on paper.</p>
+          <div class="meta"><span class="tag mod">Festival</span></div>
+        </div>
+        <div class="card">
+          <h4>Creamery Station</h4>
+          <p class="where">📍 New England · Ring 2–3</p>
+          <p>Original material rather than covers: harmony-heavy, roots-inflected, deep improvisation, Dead-influenced songwriting. The band to hand someone who says the scene is all tribute acts.</p>
+          <div class="meta"><span class="tag cheap">Small rooms</span></div>
+        </div>
+        <div class="card">
+          <h4>Mystic Dead</h4>
+          <p class="where">📍 Mystic, CT and the southern New England circuit · Ring 3</p>
+          <p>Southern New England's serious Dead outfit, known for playing full albums straight through. Worth the drive when they announce an album night.</p>
+          <div class="meta"><span class="tag mod">40–90 min</span></div>
+        </div>
+      </div>
+      <p class="vnote">Band routings change constantly. The venues and bands above were confirmed active in July 2026; check each band's own site for dates rather than relying on this page.</p>
+    </section>
+
+    <section class="section" id="gra-free">
+      <p class="kicker">Music, part three</p>
+      <h2><span class="ic">🆓</span> Free, outdoors, and close</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Framingham Friday Night Concert Series</h4>
+          <p class="where">📍 Rotating Framingham parks · Ring 1</p>
+          <p>Fridays, 6–8pm, through July and August. The series deliberately moves around the city rather than sitting on one common, and the bookings range across rock, pop, funk, country and alternative. Bring chairs and a picnic; that's the intended format.</p>
+          <p class="small">framinghamma.gov — Parks &amp; Recreation</p>
+          <div class="meta"><span class="tag free">Free</span><span class="tag close">15 min</span><span class="tag kids">Kids</span><span class="tag season">Jul–Aug</span></div>
+        </div>
+        <div class="card">
+          <h4>Concerts on the Common — Natick</h4>
+          <p class="where">📍 Natick Common · Ring 1</p>
+          <p>Weekly family concerts and kids' performances through the summer, run by the town. Low-key, walkable, and free. Check the town calendar for the current season's schedule.</p>
+          <div class="meta"><span class="tag free">Free</span><span class="tag close">15 min</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>Natick Nights</h4>
+          <p class="where">📍 Downtown Natick, 5–8pm · Ring 1</p>
+          <p>Street fair with live music, three or four evenings a summer. <strong>The next one is Wednesday August 6, 2026</strong> (rain date Aug 13), themed to the country's 250th and Natick's 375th. Free to attend.</p>
+          <div class="meta"><span class="tag free">Free</span><span class="tag close">15 min</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>Trustees of Reservations concerts</h4>
+          <p class="where">📍 Historic estates across eastern Mass · Ring 2–3</p>
+          <p>The Trustees run outdoor concert programming on properties most people only visit to hike. Lawn seating on a nineteenth-century estate is a genuinely different experience from a venue, and the crowds are small.</p>
+          <div class="meta"><span class="tag season">Summer</span><span class="tag mod">Ticketed</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gra-fest">
+      <p class="kicker">Music, part four</p>
+      <h2><span class="ic">🎪</span> Festivals, in the order they're worth it</h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Festival</th><th>When</th><th>Where</th><th>Why this one</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Lowell Folk Festival</strong></td><td><span class="mo">Jul 24–26</span></td><td>Lowell, MA · ~45 min</td><td>One of the largest <strong>free</strong> folk festivals in the country. Multiple stages across a working downtown, world and traditional music, no ticket, no lawn chairs-and-a-fence economy. The single best value on this list.</td></tr>
+            <tr><td><strong>Newport Folk Festival</strong></td><td><span class="mo">Jul 24–26</span></td><td>Newport, RI · ~90 min</td><td>The one everyone wants. 2026 bill included Lauryn Hill, Brandi Carlile, Vulfpeck, Gillian Welch &amp; David Rawlings, Punch Brothers, Hot Tuna. Sells out on announcement; set a reminder for the on-sale, not the festival.</td></tr>
+            <tr><td><strong>Levitate Music &amp; Arts</strong></td><td><span class="mo">Jul 18–19</span></td><td>Marshfield, MA · ~60 min</td><td>Coastal, jam-adjacent, family-tolerant. 2026 bill ran Alanis Morissette, CAAMP, Ziggy Marley, Trombone Shorty, Pigeons Playing Ping Pong. The most kid-viable big festival within an hour.</td></tr>
+            <tr><td><strong>Dead of Summer</strong></td><td><span class="mo">Early July</span></td><td>Hunter Park, Manchester VT · Ring 4</td><td>Four days, 23 bands, two stages, entirely built around the Dead-and-adjacent universe. This is the destination festival for exactly this taste. 2026 edition ran July 9.</td></tr>
+            <tr><td><strong>Jack's Abby anniversary weekend</strong></td><td><span class="mo">Mid-July</span></td><td>Framingham · Ring 1</td><td>Three days of beer, fair food, bands and games ten minutes from the house. The lowest-effort festival experience available to you.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="vnote">2026 dates as published. Verify the 2027 editions when lineups are announced — most of these move by a week year to year.</p>
+    </section>
+
+    <section class="section" id="gra-gear">
+      <p class="kicker">Music, part five</p>
+      <h2><span class="ic">🎸</span> Records, gear, and places to plug in</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>"Exhibit Yourself" open mic</h4>
+          <p class="where">📍 Exhibit 'A' Brewing, Framingham · Ring 1</p>
+          <p>Run jointly by <strong>School of Rock Natick</strong> and the brewery: last Saturday of every other month, one 10-minute or two-song slot per performer or band. Solo or full band, sign up in advance. It is the least intimidating room within fifteen minutes, and it's the same organization the boys would take lessons through.</p>
+          <div class="meta"><span class="tag free">Free to play</span><span class="tag close">15 min</span></div>
+        </div>
+        <div class="card">
+          <h4>TCAN's open mic and jazz jam</h4>
+          <p class="where">📍 14 Summer St, Natick · Ring 1</p>
+          <p>TCAN has historically run both a songwriter open mic and a recurring jazz jam. Formats and nights shift with the season — check the current calendar. A jazz jam is the fastest way to meet the working players in a town.</p>
+          <div class="meta"><span class="tag cheap">Low cost</span><span class="tag close">15 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Where to find every other open mic</h4>
+          <p>Two directories cover this region properly and are kept current by the people who play them: <strong>openmikes.org</strong> (filter by Massachusetts) and <strong>bostonlovesmusic.com/open-mics</strong>. Better than searching, because they list the ones with no web presence.</p>
+          <div class="meta"><span class="tag free">Free</span></div>
+        </div>
+        <div class="card">
+          <h4>Record shopping, worth the trip</h4>
+          <p class="where">📍 Boston and Cambridge · Ring 2</p>
+          <p>Nuggets in Kenmore Square is the vintage-vinyl institution — rare CDs, memorabilia, the deep bins. Armageddon and Deep Thoughts cover the heavier and weirder ends. Good Taste Records in the North End is the newer, better-curated arrival. Pair any of these with a Fenway or Sinclair show rather than making a separate trip.</p>
+          <div class="meta"><span class="tag mod">15–40 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Union Music, Worcester</h4>
+          <p class="where">📍 Worcester · Ring 2–3</p>
+          <p>The regional full-service instrument shop, and the answer when the need is a real bass tech or an amp repair rather than a big-box purchase. Worth knowing before something breaks the week of a gig.</p>
+          <div class="meta"><span class="tag mod">40 min</span></div>
+        </div>
+        <div class="card">
+          <h4>The Music Emporium</h4>
+          <p class="where">📍 Lexington · Ring 2</p>
+          <p>High-end acoustic and vintage. Not the everyday shop, but the one to visit when you want to play things you have no intention of buying, which is its own kind of afternoon.</p>
+          <div class="meta"><span class="tag mod">30 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gra-rides">
+      <p class="kicker">Bikes, part one</p>
+      <h2><span class="ic">🚴</span> Roads, assuming you've done the obvious ones</h2>
+      <p class="lede">Skipping the Minuteman and the standard Dover loop, on the assumption that a PMC rider has ridden them a hundred times. These are the ones with a reason attached.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Climb to the Clouds — Mount Wachusett</h4>
+          <p class="where">📍 Start: Nashoba Regional HS, Bolton · Ring 2</p>
+          <p>The classic Charles River Wheelers route, about 60 miles from Bolton, finishing with <strong>a mile at a steady 9%</strong> to the Visitors Center at Wachusett Mountain State Reservation. It's the only real sustained climb inside an hour of Natick, and the view from the top earns it. Do it in October and it's a different ride entirely.</p>
+          <div class="meta"><span class="tag mod">60 mi</span><span class="tag season">Best in fall</span></div>
+        </div>
+        <div class="card">
+          <h4>Berlin–Rutland, north of Worcester</h4>
+          <p class="where">📍 Berlin, Northboro, Boylston, W. Boylston, Holden, Rutland, Sterling · Ring 2–3</p>
+          <p>The most underrated road riding within striking distance: hilly, water views off the Wachusett Reservoir, and roads that riders routinely describe as Switzerland-like without much exaggeration. Very little traffic. This is the "why have I never ridden here" ride.</p>
+          <div class="meta"><span class="tag mod">Hilly</span><span class="tag mod">40 min drive</span></div>
+        </div>
+        <div class="card">
+          <h4>Harvard Center and Fruitlands</h4>
+          <p class="where">📍 Harvard, Bolton, Berlin · Ring 2</p>
+          <p>Ridge roads, orchards, and the Fruitlands overlook, which is one of the genuinely great views in eastern Massachusetts and sits at the top of a climb rather than at the end of a parking lot. Apple country, so plan it for late September.</p>
+          <div class="meta"><span class="tag season">Sept–Oct</span></div>
+        </div>
+        <div class="card">
+          <h4>Acton–Bolton–Northborough</h4>
+          <p class="where">📍 Start: South Acton commuter rail station · Ring 2</p>
+          <p>A Charles River Wheelers route across Bolton, Berlin and Northboro on very quiet back roads, moderately hilly. Starting at a train station means you can ride it as a point-to-point and take the train home, or start from Natick by bike and make it a much bigger day.</p>
+          <div class="meta"><span class="tag transit">Train start</span></div>
+        </div>
+        <div class="card">
+          <h4>The Charles River south loop</h4>
+          <p class="where">📍 Dover, Sherborn, Medfield, Millis · Ring 1</p>
+          <p>Yes, this one is familiar. It's here because of the variations most people never take: the Rocky Narrows side of Sherborn, the Farm Street ridge, and the Medfield–Millis river roads at dawn, when it's empty. Chickering School in Dover is the standard start.</p>
+          <div class="meta"><span class="tag close">From the door</span></div>
+        </div>
+        <div class="card">
+          <h4>The bike-and-train move</h4>
+          <p class="where">📍 Natick Center station · Ring 1</p>
+          <p>Since February 2026 the Cochituate Rail Trail runs all the way to the MBTA Natick Center platform with a ramp to Main Street. That turns the commuter rail into a shuttle: ride out one direction, train back, or train out to Worcester and ride home. It removes the "where do I park" problem entirely.</p>
+          <div class="meta"><span class="tag transit">Train</span><span class="tag close">15 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gra-gravel">
+      <p class="kicker">Bikes, part two</p>
+      <h2><span class="ic">🪨</span> Gravel and dirt, from home outward</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Callahan State Park</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>The closest real off-road network to the house: an extensive multi-use trail system across every skill level, ridden year-round and skied in winter. This is the weekday-evening option that doesn't need a car.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Free</span><span class="tag dog">Dog OK</span></div>
+        </div>
+        <div class="card">
+          <h4>Great Brook Farm State Park</h4>
+          <p class="where">📍 Carlisle · Ring 2</p>
+          <p>The MetroWest gravel standard: farm roads, doubletrack, an actual dairy farm with an ice cream stand at the trailhead. In winter it becomes a cross-country ski touring center. Combine with the Reformatory Branch Trail for a longer mixed-surface day.</p>
+          <div class="meta"><span class="tag mod">30 min</span><span class="tag kids">Kid-viable</span></div>
+        </div>
+        <div class="card">
+          <h4>Lexington–Concord mixed-surface loop</h4>
+          <p class="where">📍 Minuteman + Reformatory Branch + Battle Road · Ring 2</p>
+          <p>About 32 miles combining paved bikeway, hard-pack rail trail, and the historic Battle Road surface. Well known, included because it's the best low-stress introduction to mixed terrain if one of the boys ever wants to come along.</p>
+          <div class="meta"><span class="tag kids">Kid-viable</span><span class="tag mod">32 mi</span></div>
+        </div>
+        <div class="card">
+          <h4>The Quabbin circumnavigation</h4>
+          <p class="where">📍 Central Massachusetts · Ring 3</p>
+          <p>A big day: riding the perimeter of the Quabbin Reservoir, through the roads of the drowned towns. Remote, quiet, and unlike anything else in the state. Bring everything you need; services are genuinely sparse.</p>
+          <div class="meta"><span class="tag mod">Big day</span><span class="tag mod">60–90 min drive</span></div>
+        </div>
+        <div class="card">
+          <h4>Myles Standish State Forest</h4>
+          <p class="where">📍 Carver / Plymouth · Ring 3</p>
+          <p>Pine barrens, sandy fire roads, kettle ponds, and almost no elevation — which makes it the ideal winter or shoulder-season ride when the hills are iced. Freetown-Fall River State Forest is the same idea further south.</p>
+          <div class="meta"><span class="tag season">Winter-friendly</span></div>
+        </div>
+        <div class="card">
+          <h4>Ride Studio Cafe</h4>
+          <p class="where">📍 Lexington · Ring 2</p>
+          <p>The regional hub for mixed-terrain riding culture, and a good source of routes that never get published. If you want into the local gravel scene rather than just the roads, this is the door.</p>
+          <div class="meta"><span class="tag mod">30 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gra-events">
+      <p class="kicker">Bikes, part three</p>
+      <h2><span class="ic">🏁</span> Rides worth entering</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>D2R2 — the Deerfield Dirt-Road Randonnée</h4>
+          <p class="where">📍 Deerfield, western Mass · Saturday August 22, 2026 · Ring 4</p>
+          <p>The original American gravel grinder, run by the Franklin Land Trust, and still the one that serious riders talk about. The 2026 edition brings back the original 160K route with new sections. Brutal, beautiful, and completely unlike a charity century — it's a randonnée, not a race, and the dirt roads through the Deerfield hills are the point.</p>
+          <p><strong>If you ride one new event this year, this is the recommendation.</strong> It's the natural next thing for someone who has already done the PMC repeatedly.</p>
+          <p class="small">d2r2.franklinlandtrust.org</p>
+          <div class="meta"><span class="tag mod">Aug 22</span><span class="tag mod">160K option</span></div>
+        </div>
+        <div class="card">
+          <h4>Pan-Mass Challenge</h4>
+          <p class="where">📍 August 1–2, 2026 · Ring 1</p>
+          <p>You know this one. What's here for the rest of the family: the Wellesley route starts and finishes at <strong>Babson College</strong>, and the routes pass through 47 communities including Natick, Framingham and Wellesley. PMC's own "Neighbors" page maps where riders come through and where the water stops are, which makes for a genuinely good spectating morning with kids, signs, and a hose.</p>
+          <p class="small">pmc.org/neighbors</p>
+          <div class="meta"><span class="tag close">Local</span><span class="tag kids">Great to watch</span></div>
+        </div>
+        <div class="card">
+          <h4>JAM Fund Grand Fundo</h4>
+          <p class="where">📍 Western Massachusetts · Mid-July · Ring 4</p>
+          <p>Three distance options, heavy on gravel, fully stocked rest stops, and a genuinely good cause (developing young racers). Smaller and friendlier than D2R2 and a reasonable warm-up for it.</p>
+          <div class="meta"><span class="tag season">July</span></div>
+        </div>
+        <div class="card">
+          <h4>Climb to the Clouds, as an event</h4>
+          <p class="where">📍 Bolton start · Ring 2</p>
+          <p>The Charles River Wheelers run this as an organized century as well as a route you can ride any day. Doing it with the club is the easier way to meet riders at your level in this area.</p>
+          <div class="meta"><span class="tag mod">Century</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gra-shops">
+      <p class="kicker">Bikes, part four</p>
+      <h2><span class="ic">🔧</span> Shops, clubs, and group rides</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Landry's Bicycles — Natick</h4>
+          <p class="where">📍 790 Worcester St, Natick · Ring 1</p>
+          <p>Employee-owned, in business since 1922, and the closest full-service shop. They run a regular group ride program including women's group rides, and publish a "places to ride" guide that's more useful than most published route collections. Mon–Sat 10–6 (Wed–Thu to 7), Sun 12–5.</p>
+          <p class="small">landrys.com/events</p>
+          <div class="meta"><span class="tag close">15 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Charles River Wheelers</h4>
+          <p class="where">📍 Rides all over eastern Mass · Ring 1–3</p>
+          <p>The big regional club, and the source of most of the named routes above. Their ride calendar runs year-round at every pace, and their route library is the single best free resource for this region. Membership is cheap.</p>
+          <div class="meta"><span class="tag cheap">Low dues</span><span class="tag free">Free routes</span></div>
+        </div>
+        <div class="card">
+          <h4>Frank's Spoke 'n' Wheel</h4>
+          <p class="where">📍 MetroWest · Ring 1</p>
+          <p>The other local option, and the one people mention for straightforward service pricing. Useful as a second opinion when a shop tells you the frame needs something expensive.</p>
+          <div class="meta"><span class="tag close">15 min</span></div>
+        </div>
+        <div class="card">
+          <h4>MassBike</h4>
+          <p class="where">📍 Statewide advocacy · —</p>
+          <p>Worth a membership for a rider who logs real mileage: they track infrastructure projects, publish route and safety resources, and are the reason several of the rail trail extensions near Natick exist. The Lake Cochituate Path extension along Route 9 is in the pipeline for 2026–27.</p>
+          <div class="meta"><span class="tag cheap">Low dues</span></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="backtop"><a href="#home">← Back to start</a></p>
+  </div>
+</section>
+<section class="guidesec" id="boy" data-guide hidden>
+  <div class="wrap">
+    <div class="guidehead">
+      <p class="kicker">Guide 3</p>
+      <h2 class="guidetitle" style="font-family:var(--serif);color:var(--navy)">For the Boys</h2>
+      <p class="homeintro">Level99 gets a proper section rather than a mention, because there's more to know about it than the website says. After that: tables to play D&amp;D at, places to build robots and design games, arcades that aren't a mall kiosk, and a whole reptile world for Emmet that most people in this state don't know exists.</p>
+    </div>
+
+    <nav class="toc">
+      <a href="#boy-l99"><span class="ic">🧩</span> Level99, properly</a>
+      <a href="#boy-beyond"><span class="ic">🚪</span> If they liked Level99</a>
+      <a href="#boy-dnd"><span class="ic">🐉</span> D&amp;D and tabletop</a>
+      <a href="#boy-tech"><span class="ic">🤖</span> Robotics &amp; game design</a>
+      <a href="#boy-games"><span class="ic">🕹️</span> Video games, out of the house</a>
+      <a href="#boy-music"><span class="ic">🥁</span> Playing in a band</a>
+      <a href="#boy-herp"><span class="ic">🦎</span> Emmet's reptile world</a>
+    </nav>
+
+    <section class="section" id="boy-l99">
+      <p class="kicker">The one they already love</p>
+      <h2><span class="ic">🧩</span> Level99, and what the website doesn't tell you</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Level99 — Natick Mall</h4>
+          <p class="where">📍 1235 Worcester St, Natick · Ring 1</p>
+          <p>More than fifty life-sized physical challenge rooms — dodging, climbing, puzzling, lifting — each one running one to four minutes and built for teams of two to six. One ticket unlocks everything, including the Challenge Rooms, the player-versus-player duels, and the art scavenger hunt that most visitors never notice exists.</p>
+          <dl class="facts">
+            <dt>Hours</dt><dd>Sun 10am–10pm · Mon–Thu 11am–10pm · Fri 11am–1am · Sat 10am–1am</dd>
+            <dt>Price</dt><dd>Around $59.99 on Saturdays and holidays; noticeably less on weekdays. Holiday pricing also applies during school vacation weeks.</dd>
+            <dt>The age rule people get wrong</dt><dd>Anyone under 18 must be accompanied by a guardian who is <strong>at least 25</strong>. And under-18s must be out of the building by 10pm on Fridays and Saturdays.</dd>
+          </dl>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">$45–60</span><span class="tag kids">Both boys</span></div>
+        </div>
+        <div class="card">
+          <h4>How to get more out of it</h4>
+          <p><strong>Go on a weekday.</strong> The price difference is real and the wait times are the actual constraint — a busy Saturday cuts the number of rooms you finish roughly in half.</p>
+          <p><strong>Work backwards through the building.</strong> Everyone starts at the entrance and clusters there for the first hour. The far rooms are empty at exactly the time the near ones aren't.</p>
+          <p><strong>Split into two teams of three, not one team of six.</strong> Most rooms are designed for smaller groups; six people means half of you are watching.</p>
+          <p><strong>Do the scavenger hunt.</strong> It runs in the background, costs nothing extra, and gives the younger one something to win at when the physical rooms favor the older one.</p>
+          <p><strong>Book the adult before the date.</strong> The 25-and-over rule means this is never a drop-off, and pretending otherwise has ruined a lot of birthday plans.</p>
+          <div class="meta"><span class="tag free">Free advice</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="boy-beyond">
+      <p class="kicker">The deeper cut</p>
+      <h2><span class="ic">🚪</span> If they liked Level99, they'll like these</h2>
+      <p class="lede">Ranked by how close the experience is to what Level99 actually does well: physical problem-solving in a team, with immediate feedback.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Boda Borg</h4>
+          <p class="where">📍 90 Pleasant St, Malden · Ring 2</p>
+          <p><strong>The single best recommendation on this page.</strong> Twenty-five "quests," each a chain of two to five physical and mental challenges, attempted by a team of three to five. No host, no actor, no script — you walk up to a door, go in, and either solve it or get kicked out and try again. Unlimited retries for the whole session.</p>
+          <p>It is the closest thing in the country to what Level99 is, it predates it, and it is <strong>the only Boda Borg location in the United States</strong>. Roughly 40 minutes from Natick, and it will absolutely land with a thirteen-year-old.</p>
+          <p class="small">Mon 5–10pm · Tue–Thu 10am–10pm · Fri–Sat 10am–midnight · Sun 10am–10pm</p>
+          <div class="meta"><span class="tag mod">15–40 min</span><span class="tag mod">Ticketed</span><span class="tag kids">Both boys</span></div>
+        </div>
+        <div class="card">
+          <h4>Immersive Gamebox</h4>
+          <p class="where">📍 Natick Mall · Ring 1</p>
+          <p>Seven projection-mapped rooms in the same mall as Level99. Shorter, more screen-driven, and better suited to the younger one — the physical demands are lower, so the age gap between the boys matters less here than it does at Level99.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Ticketed</span></div>
+        </div>
+        <div class="card">
+          <h4>Central Rock Gym — Framingham</h4>
+          <p class="where">📍 1451 Concord St, Framingham · Ring 1</p>
+          <p>Bouldering only, meaning no ropes and no harness, which removes the whole belay-certification barrier. Kid-Friendly Hours are set aside for ages 7–12, and there's a youth training program for ages 8–14 focused on problem-solving and team building alongside the climbing. Week-long camps in summer.</p>
+          <p>This is the closest thing to a year-round physical-puzzle habit rather than a one-off outing.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Both boys</span></div>
+        </div>
+        <div class="card">
+          <h4>Escape rooms, the good ones</h4>
+          <p class="where">📍 Boston, Cambridge, Framingham · Ring 1–2</p>
+          <p>A useful filter for a thirteen-year-old: skip anything advertised as "horror" or "you'll never escape," which usually means padlocks and frustration. Look for rooms that publish a success rate above 30% and describe the puzzles as mechanical or technical.</p>
+          <div class="meta"><span class="tag mod">$35–45/person</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="boy-dnd">
+      <p class="kicker">Tabletop</p>
+      <h2><span class="ic">🐉</span> Where to actually play D&amp;D</h2>
+      <p class="lede">A home game with friends is the best version. But the thing that keeps a campaign alive is a room with other people running one, and there are more of those nearby than it looks.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Battleground Games &amp; Hobbies</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>The nearest serious game store, and one of New England's larger ones: collectible card games, board games, miniatures, and role-playing games, with in-store play space. This is where organized play, league nights and pickup tables happen, and where a kid learns that the hobby is bigger than his own group.</p>
+          <p><strong>Call before you go</strong> and ask specifically what their youth and beginner D&amp;D nights look like — schedules change seasonally and aren't always well posted.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Free to play</span></div>
+        </div>
+        <div class="card">
+          <h4>Morse Institute Library</h4>
+          <p class="where">📍 14 East Central St, Natick · Ring 1</p>
+          <p>Libraries run more teen tabletop programming than anyone expects, and it's free. Morse Institute runs an active teen program alongside a 3D printing service and a Library of Things. Ask the teen librarian directly — this is one of the few places where an email gets a real answer within a day.</p>
+          <div class="meta"><span class="tag free">Free</span><span class="tag close">15 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Tavern of Tales</h4>
+          <p class="where">📍 Boston · Ring 2</p>
+          <p>A dedicated D&amp;D bar and gaming space running scheduled campaigns and one-shots with hired Dungeon Masters. Mostly adult-oriented, but worth knowing about for a special occasion or when the older one is a few years further along.</p>
+          <div class="meta"><span class="tag mod">Boston</span></div>
+        </div>
+        <div class="card">
+          <h4>Making the home game better</h4>
+          <p>The cheapest upgrade to a kid-run campaign is not miniatures. It's a second Dungeon Master. If Emmet is always the DM, the game dies when he gets tired of it; if the group rotates, it survives.</p>
+          <p>The second cheapest is a printed battle map and a wet-erase marker, both of which Battleground stocks for under twenty dollars.</p>
+          <div class="meta"><span class="tag cheap">Under $25</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="boy-tech">
+      <p class="kicker">Building things</p>
+      <h2><span class="ic">🤖</span> Robotics and game design</h2>
+      <p class="lede">Two different itches. Robotics is physical and team-based; game design is solitary and creative. Programs below are split accordingly.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>CS Recitations</h4>
+          <p class="where">📍 Natick · Ring 1</p>
+          <p>Founded by MIT alums, running small-group intensive computer science classes for grades 5 through 12, including an Arduino basics course for grades 5–7. This is the most academically serious option in town, and small-group means it's teaching rather than supervising.</p>
+          <p>Best fit for the older one if the interest is real rather than passing.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Course fee</span></div>
+        </div>
+        <div class="card">
+          <h4>The Robo Hub</h4>
+          <p class="where">📍 MetroWest · Ring 1–2</p>
+          <p>Robotics, coding, app development and engineering for grades 1–9, with a Robo Club after-school program in the fall and a summer program. The grade range means <strong>both boys can go at the same time</strong> at their own levels, which is rarer than it should be.</p>
+          <p class="small">therobohub.com</p>
+          <div class="meta"><span class="tag kids">Both boys</span><span class="tag mod">Term fee</span></div>
+        </div>
+        <div class="card">
+          <h4>Code Wiz</h4>
+          <p class="where">📍 Needham and six other Massachusetts locations · Ring 1–2</p>
+          <p>Personalized coding and robotics at a self-paced structure — kids progress on their own track rather than a class pace. Covers Scratch through real languages, plus Roblox and Minecraft modding, which is usually the honest on-ramp for a kid who says he wants to "make games."</p>
+          <div class="meta"><span class="tag mod">15–40 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Acera STEAM Learning Lab</h4>
+          <p class="where">📍 Winchester · Ring 2–3</p>
+          <p>Opens its STEAM lab to non-enrolled students ages 7–15 for after-school programs running from robotics through game design. Further out, but the programming is genuinely more ambitious than a franchise class.</p>
+          <div class="meta"><span class="tag mod">40 min</span></div>
+        </div>
+        <div class="card">
+          <h4>The free version: FIRST LEGO League</h4>
+          <p class="where">📍 School and community teams across MetroWest · Ring 1</p>
+          <p>Before paying for a program, check whether the middle school already fields a FIRST LEGO League or FIRST Tech Challenge team. It's competitive robotics with a real season, real judging, and no tuition, and it's the version that actually looks like engineering.</p>
+          <div class="meta"><span class="tag free">Usually free</span></div>
+        </div>
+        <div class="card">
+          <h4>3D printing at the library</h4>
+          <p class="where">📍 Morse Institute Library, Natick · Ring 1</p>
+          <p>The library runs an Intro to 3D Printing workshop where teens design an object in Tinkercad and get it printed. Free, and the fastest possible path from "I had an idea" to "I'm holding it." Also: a working printer is the single best accessory for a custom terrarium build.</p>
+          <div class="meta"><span class="tag free">Free</span><span class="tag close">15 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="boy-games">
+      <p class="kicker">Screens, but social</p>
+      <h2><span class="ic">🕹️</span> Video games outside the house</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Borrow games from the library</h4>
+          <p class="where">📍 Morse Institute Library, Natick · Ring 1</p>
+          <p>Console games circulate on a library card, same as books, across the whole Minuteman network — which means dozens of libraries' collections, requestable to Natick. The best answer to "can I buy this $70 game" is "let's borrow it first."</p>
+          <div class="meta"><span class="tag free">Free</span><span class="tag close">15 min</span></div>
+        </div>
+        <div class="card">
+          <h4>Barcade-style arcades</h4>
+          <p class="where">📍 Boston / Cambridge / Somerville · Ring 2</p>
+          <p>Several Boston-area spots run genuine cabinet collections rather than ticket-redemption machines. Most are 21-plus in the evening but allow all ages during daytime hours — always check the daytime policy specifically, because it's often buried and often generous.</p>
+          <div class="meta"><span class="tag mod">Boston</span></div>
+        </div>
+        <div class="card">
+          <h4>Roblox and Minecraft, taken seriously</h4>
+          <p>If the younger one is deep in Roblox, that's a game-design on-ramp rather than a phase to be endured. Roblox Studio is free, runs on any laptop, and Code Wiz and similar programs teach it directly. A kid who builds a playable Roblox level has done more real design work than one who took a "coding for kids" class.</p>
+          <div class="meta"><span class="tag free">Free software</span></div>
+        </div>
+        <div class="card">
+          <h4>Immersive Gamebox and Level99</h4>
+          <p class="where">📍 Natick Mall · Ring 1</p>
+          <p>Covered above. Between them, the mall covers the whole "video game, but physical" category within ten minutes of the house, which is a genuinely unusual thing for a town this size to have.</p>
+          <div class="meta"><span class="tag close">15 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="boy-music">
+      <p class="kicker">Instruments</p>
+      <h2><span class="ic">🥁</span> Playing in a band, not just taking lessons</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>School of Rock — Natick</h4>
+          <p class="where">📍 217 W Central St, Natick · Ring 1</p>
+          <p>The structural thing that makes this different from a lesson: one-on-one instruction on guitar, bass, drums, keys or vocals is <strong>paired with a weekly group rehearsal</strong> in a band of peers, and the season ends with a real gig at a real venue. Kids who quit private lessons often don't quit this, because the band is waiting on them.</p>
+          <dl class="facts">
+            <dt>Performance Program</dt><dd>Ages 8–18 — the flagship. Weekly band rehearsal plus a private lesson.</dd>
+            <dt>Hours</dt><dd>Mon–Fri from 2pm (to 10pm Mon/Tue/Fri varies), Sat 10am–4pm</dd>
+            <dt>Catchment</dt><dd>Natick, Framingham, Ashland, Sherborn, Wayland — an after-school destination rather than a drive.</dd>
+          </dl>
+          <p><strong>The overlap worth using:</strong> they co-run the "Exhibit Yourself" open mic at Exhibit 'A' Brewing in Framingham. A parent who plays bass and a kid in a band program with a shared open mic is not a coincidence you should waste.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Monthly tuition</span><span class="tag kids">Both boys</span></div>
+        </div>
+        <div class="card">
+          <h4>Natick Public Schools music lesson program</h4>
+          <p class="where">📍 Natick · Ring 1</p>
+          <p>The school district runs its own instrumental lesson program. Much cheaper than private study, aligned with the school ensembles, and the path of least resistance for a kid already playing in a school band. Worth doing <em>alongside</em> a rock program rather than instead of it.</p>
+          <div class="meta"><span class="tag cheap">Low cost</span><span class="tag close">15 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="boy-herp">
+      <p class="kicker">For Emmet</p>
+      <h2><span class="ic">🦎</span> The reptile world he doesn't know is here</h2>
+      <p class="lede">A kid who has put real hours into a terrarium has already done the hard part. What's missing is usually not more equipment — it's other people who take it as seriously as he does. Massachusetts has an unusually good scene for this.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Massachusetts Reptile Expo</h4>
+          <p class="where">📍 Starland Sportsplex, 645 Washington St, Hanover · Ring 3</p>
+          <p>Run by the <strong>New England Herpetological Society</strong> as a fundraiser for conservation and education. <strong>150-plus tables</strong> of breeders, dealers and hobbyists: animals, enclosures, feeders, substrate, décor, books, and specialty gear, usually at show prices well under retail. Doors 10am to 4pm.</p>
+          <p>Spring and fall editions each year — the 2026 spring show ran June 21. Check neherp.com for the next date.</p>
+          <p><strong>Go for the vendors, not the animals.</strong> Bongo's Bioactive, Max's Terrariums and similar sellers will troubleshoot a specific live setup at the table, which is worth more than any forum thread.</p>
+          <p class="small">neherp.com</p>
+          <div class="meta"><span class="tag mod">40–90 min</span><span class="tag cheap">~$10–15</span><span class="tag kids">Emmet</span></div>
+        </div>
+        <div class="card">
+          <h4>New England Herpetological Society</h4>
+          <p class="where">📍 Regional · —</p>
+          <p>The society behind the expo, and the organizing body for the region's herp community — meetings, education, conservation work. A kid with a lizard and an actual interest in husbandry is exactly who this exists for, and the membership skews older and more knowledgeable, which is the point.</p>
+          <div class="meta"><span class="tag cheap">Low dues</span></div>
+        </div>
+        <div class="card">
+          <h4>Cape Ann Vernal Pond Team</h4>
+          <p class="where">📍 Cape Ann / North Shore · Ring 3</p>
+          <p>They bring a native Massachusetts snake display to the reptile expo, and they do real vernal pool conservation fieldwork — salamander migrations, egg mass surveys, amphibian monitoring. The bridge between "I like reptiles" and "I do field herpetology," and they take volunteers.</p>
+          <div class="meta"><span class="tag season">Spring peak</span><span class="tag free">Volunteer</span></div>
+        </div>
+        <div class="card">
+          <h4>Broadmoor, for the wild version</h4>
+          <p class="where">📍 Mass Audubon, Natick · Ring 1</p>
+          <p>Nine miles of trail through marsh and pond in his own town, with boardwalks that put turtles, frogs and the occasional snake at arm's length. Free-ish, close, and repeatable — the best place to turn a terrarium interest into a field interest.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Both boys</span></div>
+        </div>
+        <div class="card">
+          <h4>Find an exotics vet before you need one</h4>
+          <p>General-practice small animal vets often won't see reptiles, and finding that out during an emergency is bad. Search specifically for a practice advertising <strong>exotic animal</strong> or <strong>reptile</strong> care, call to confirm they currently take reptile patients, and put the number in the phone now.</p>
+          <p class="small">Not verified for specific practices here — this one is worth ten minutes of Emmet's own research, which is also a good project for him.</p>
+          <div class="meta"><span class="tag free">Do it now</span></div>
+        </div>
+        <div class="card">
+          <h4>The next level for a terrarium</h4>
+          <p>If he has the basics dialed, the two upgrades that change everything are a <strong>bioactive substrate with a clean-up crew</strong> (springtails and isopods, which turn the enclosure into a functioning micro-ecosystem instead of a box to be cleaned), and <strong>proper UVB with a measured output</strong> rather than a bulb chosen by wattage. Both are expo purchases, and both are more interesting than more decor.</p>
+          <div class="meta"><span class="tag mod">$40–120</span></div>
+        </div>
+      </div>
+      <div class="callout tip"><strong>The crossover nobody plans:</strong> Julia's biology background plus Emmet's terrarium plus a bioactive setup is a real shared project — it's a closed ecosystem with a nitrogen cycle, detritivores, and plant selection. That's a much better joint activity than another trip somewhere.</div>
+    </section>
+
+    <p class="backtop"><a href="#home">← Back to start</a></p>
+  </div>
+</section>
+<section class="guidesec" id="spo" data-guide hidden>
+  <div class="wrap">
+    <div class="guidehead">
+      <p class="kicker">Guide 4</p>
+      <h2 class="guidetitle" style="font-family:var(--serif);color:var(--navy)">Sports &amp; Lessons</h2>
+      <p class="homeintro">Where kids in this area actually learn things. Sailing is the surprise: you don't have to go to the coast or the Charles, because there's a boathouse on Lake Cochituate.</p>
+    </div>
+
+    <nav class="toc">
+      <a href="#spo-sail"><span class="ic">⛵</span> Sailing</a>
+      <a href="#spo-field"><span class="ic">🥍</span> Lacrosse &amp; soccer</a>
+      <a href="#spo-golf"><span class="ic">⛳</span> Golf, for everyone</a>
+      <a href="#spo-climb"><span class="ic">🧗</span> Climbing</a>
+      <a href="#spo-winter"><span class="ic">🎿</span> Winter sports</a>
+      <a href="#spo-when"><span class="ic">📅</span> When to sign up</a>
+    </nav>
+
+    <section class="section" id="spo-sail">
+      <p class="kicker">The one people don't know about</p>
+      <h2><span class="ic">⛵</span> Sailing, starting three miles from the house</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Natick Boathouse — Boating in Boston</h4>
+          <p class="where">📍 25 Commonwealth Rd, Cochituate State Park, Natick · Ring 1</p>
+          <p>The headline: <strong>you can sail on Lake Cochituate</strong>, and the boathouse is in your own town. They run rentals, classes, camps and wildlife tours from a 625-acre lake system spanning Natick, Framingham and Wayland, with a swimming beach, playing fields and grills right there.</p>
+          <dl class="facts">
+            <dt>Sailing access</dt><dd>Sailboats go to <strong>season pass members only</strong>, and you have to pass a sailing check-out first. That's a feature, not a barrier — it means the path is: take the class, pass the check-out, then sail all season without booking anything.</dd>
+            <dt>Also available</dt><dd>Kayaks, canoes, paddleboards, pedal boats. Kayaks are rated for ages 8 and up.</dd>
+            <dt>Season</dt><dd>Opens in May. Paddling and sailing classes plus boating camp run through the summer.</dd>
+            <dt>Practical</dt><dd>$8 to park. Weekends are walk-up only and the park hits capacity — arrive early or go on a weekday evening.</dd>
+          </dl>
+          <p class="small">boatinginboston.com/boathouses/natick</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Both boys</span><span class="tag season">May–Sept</span></div>
+        </div>
+        <div class="card">
+          <h4>Community Boating Inc.</h4>
+          <p class="where">📍 Charles River Esplanade, Boston · Ring 2</p>
+          <p>The serious junior program, and one of the great civic institutions in Boston. The Summer Junior Program runs mid-June through late August, and <strong>the fee is on a sliding scale</strong> that makes it genuinely accessible. Kids learn to skipper a boat themselves rather than crew for an instructor, and there's windsurfing, paddling and a leadership track alongside.</p>
+          <p>Reachable by commuter rail plus a short walk or T ride, which makes it viable without a daily drive into the city.</p>
+          <div class="meta"><span class="tag transit">Train + walk</span><span class="tag cheap">Sliding scale</span></div>
+        </div>
+        <div class="card">
+          <h4>Charles River Sailing Academy</h4>
+          <p class="where">📍 MIT Sailing Pavilion, Cambridge · Ring 2</p>
+          <p>Beginner and intermediate instruction for ages 11–16, run by the MIT sailing coach across eight four-day sessions from June into August. Excellent, and it fills — the summer 2026 sessions sold out. Watch for registration opening in late winter if this is the target for next year.</p>
+          <div class="meta"><span class="tag mod">Ages 11–16</span><span class="tag mod">Books out early</span></div>
+        </div>
+        <div class="card">
+          <h4>Crimson Sailing Academy</h4>
+          <p class="where">📍 Harvard's fleet, Charles River · Ring 2</p>
+          <p>Camp-format instruction in collegiate FJs and 420s — real racing dinghies rather than trainers. The right pick for a kid who has already done a learn-to-sail week and wants boats that respond.</p>
+          <div class="meta"><span class="tag mod">Camp format</span></div>
+        </div>
+      </div>
+      <div class="callout tip"><strong>The sequence that works:</strong> a season pass and the sailing check-out at Natick Boathouse first, because it's local, cheap and repeatable. Only go to the Charles once a kid has decided he actually likes it.</div>
+    </section>
+
+    <section class="section" id="spo-field">
+      <p class="kicker">Town sports</p>
+      <h2><span class="ic">🥍</span> Lacrosse, soccer, and the rest</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Natick Youth Lacrosse</h4>
+          <p class="where">📍 Natick · Ring 1</p>
+          <p>Boys' and girls' programs from pre-K/kindergarten through eighth grade, built around a spring season. Grades 1–4 run a <strong>"classic" program that welcomes every interested player</strong> with no tryout. Grades 5–8 add a more competitive "select" track that does require a tryout — so both boys have a defined path, and the older one has somewhere to go if he wants it.</p>
+          <p class="small">naticklacrosse.com</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag season">Spring</span><span class="tag kids">Both boys</span></div>
+        </div>
+        <div class="card">
+          <h4>Natick Soccer</h4>
+          <p class="where">📍 Natick · Ring 1</p>
+          <p>The town's youth soccer organization, running spring and summer programming with online registration. Recreational and travel tracks. The default, and the one where most of their school friends already are.</p>
+          <p class="small">naticksoccer.org</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Both boys</span></div>
+        </div>
+        <div class="card">
+          <h4>Natick Recreation &amp; Parks</h4>
+          <p class="where">📍 Natick · Ring 1</p>
+          <p>The clearing house for everything else the town runs: seasonal clinics, camps, wellness series, and the programs that never get advertised beyond the department's own catalog. Worth checking the catalog each season rather than searching when you need something.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Town pricing</span></div>
+        </div>
+        <div class="card">
+          <h4>Natick High School athletics</h4>
+          <p class="where">📍 Natick · Ring 1</p>
+          <p>Relevant sooner than it feels. Registration for a school year typically opens June 1 and closes in early August — a hard deadline that families miss every year. Put it in the calendar the spring before it matters.</p>
+          <div class="meta"><span class="tag close">15 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="spo-golf">
+      <p class="kicker">Something all four can do</p>
+      <h2><span class="ic">⛳</span> Golf without the country club</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Sassamon Trace Golf Course</h4>
+          <p class="where">📍 233 South Main St, Natick · 508-655-1330 · Ring 1</p>
+          <p>The town-owned course, and close to a perfect family golf setup: <strong>nine holes, executive length</strong> — five par 3s, three par 4s and one par 5 — designed in the classic style and kept in good shape. Short enough that a younger kid finishes, real enough that adults aren't bored.</p>
+          <dl class="facts">
+            <dt>Junior lessons</dt><dd>Two age bands, roughly 6–9 and 10–16. The junior series runs four consecutive days: classes 1 through 3 are an hour each, and class 4 is a two-hour playing lesson on the course.</dd>
+            <dt>Private instruction</dt><dd>Private and semi-private lessons with Scott Guild, plus supervised course play.</dd>
+            <dt>Junior Tour</dt><dd>They run a junior tour for kids who want competition rather than just lessons.</dd>
+          </dl>
+          <p class="small">sassamontrace.com</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Town rates</span><span class="tag kids">Both boys</span></div>
+        </div>
+        <div class="card">
+          <h4>How to make golf work with a big age gap</h4>
+          <p>An executive nine like Sassamon Trace is the whole answer: par 3s mean the younger one reaches greens in regulation occasionally, which is what keeps a kid playing. On a full-length course he never does, and quits.</p>
+          <p>Play as a scramble — everyone hits, then all four play the best ball. It ends the "waiting for the slow one" dynamic completely and turns nine holes into something under two hours.</p>
+          <p>Twilight rates are the cheapest tee times and the emptiest course, which matters when two of the four are learning.</p>
+          <div class="meta"><span class="tag free">Free advice</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="spo-climb">
+      <p class="kicker">Year-round</p>
+      <h2><span class="ic">🧗</span> Climbing</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Central Rock Gym — Framingham</h4>
+          <p class="where">📍 1451 Concord St, Framingham · Ring 1</p>
+          <p>Bouldering-only, so no ropes, no harness, no belay certification for a parent. That removes the main obstacle to a kid climbing regularly. Structured youth training for ages 8–14 emphasizes problem-solving and team building alongside strength; designated Kid-Friendly Hours cover ages 7–12; week-long camps run in summer and school vacations.</p>
+          <p>Also the best rainy-Saturday alternative to another screen, and it's ten minutes away.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Both boys</span><span class="tag season">Year-round</span></div>
+        </div>
+        <div class="card">
+          <h4>Why climbing fits this family specifically</h4>
+          <p>It's the only sport on this page where an eight-year-old and a thirteen-year-old can be in the same room, doing the same activity, at completely different levels, without either one being held back or left behind. Routes are graded; everybody climbs their own.</p>
+          <p>It also transfers directly to the thing they already like about Level99 — physical problem-solving with instant feedback — for a fraction of the per-visit cost.</p>
+          <div class="meta"><span class="tag kids">Age-gap proof</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="spo-winter">
+      <p class="kicker">December to March</p>
+      <h2><span class="ic">🎿</span> Winter sports, ranked by drive</h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Where</th><th>Drive</th><th>What it's for</th><th>The detail</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Nashoba Valley</strong>, Westford</td><td>~45 min</td><td>Learning to ski, night skiing, tubing</td><td>17 trails, 9 lifts, a snowboard park, and <strong>the largest tubing park in New England</strong>. Night skiing after school or after work is the actual use case — this is the mountain you go to on a Tuesday, not a vacation.</td></tr>
+            <tr><td><strong>Wachusett Mountain</strong>, Princeton</td><td>~60 min</td><td>Real skiing, close</td><td>8 lifts and upgraded snowmaking. The trick is the <strong>7:00–9:30pm twilight session</strong>, which starts around $52 and is the quietest the mountain gets all week.</td></tr>
+            <tr><td><strong>Weston Ski Track</strong>, Weston</td><td>~20 min</td><td>Cross-country, at night</td><td>Snowmaking and lights on a golf course fifteen minutes away. The lowest-commitment way to try Nordic skiing, and a genuinely good workout for an endurance cyclist in the off-season.</td></tr>
+            <tr><td><strong>Great Brook Farm</strong>, Carlisle</td><td>~30 min</td><td>Cross-country, by day</td><td>A proper touring center on farm trails, with rentals and lessons. The same place that's a gravel ride in summer.</td></tr>
+            <tr><td><strong>Callahan State Park</strong>, Framingham</td><td>~12 min</td><td>Free XC skiing</td><td>The trail network is skied in winter, at no cost, ten minutes from the house. Requires your own gear and enough snow, but it's the cheapest winter sport available.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="spo-when">
+      <p class="kicker">The thing that actually goes wrong</p>
+      <h2><span class="ic">📅</span> When to sign up for what</h2>
+      <p class="lede">Nearly every program on this page has a registration window that closes months before the season. Missing them is the most common way a kid doesn't get to do the thing.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Sign up in…</th><th>…for</th></tr></thead>
+          <tbody>
+            <tr><td><span class="mo">January–February</span></td><td>Summer sailing programs on the Charles. Charles River Sailing Academy sold out for summer 2026; the good ones are gone by spring.</td></tr>
+            <tr><td><span class="mo">February–March</span></td><td>Spring lacrosse and spring soccer. Summer camps at Central Rock, Robo Hub and School of Rock — the popular weeks go first.</td></tr>
+            <tr><td><span class="mo">April–May</span></td><td>Natick Boathouse season passes (there's often a summer promo, e.g. 25% off passes bought July 1–Aug 16 with a code). Junior golf series at Sassamon Trace.</td></tr>
+            <tr><td><span class="mo">June 1</span></td><td>Natick High School athletics registration opens; closes around August 10. Hard deadline.</td></tr>
+            <tr><td><span class="mo">August</span></td><td>Fall after-school: Robo Club, School of Rock terms, Central Rock youth training, town rec catalog.</td></tr>
+            <tr><td><span class="mo">November</span></td><td>Ski season passes and lesson packages, which are cheapest before the first snow.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="vnote">Dates reflect the 2026 cycle as published. Every program's exact window shifts year to year — treat this as the month to check, not the date to rely on.</p>
+    </section>
+
+    <p class="backtop"><a href="#home">← Back to start</a></p>
+  </div>
+</section>
+<section class="guidesec" id="out" data-guide hidden>
+  <div class="wrap">
+    <div class="guidehead">
+      <p class="kicker">Guide 5</p>
+      <h2 class="guidetitle" style="font-family:var(--serif);color:var(--navy)">Outdoors, all together</h2>
+      <p class="homeintro">The dog comes, the boys complain for the first ten minutes, and everybody feels better afterward. Sorted by how far you drive, with the four best things inside ten minutes listed first because those are the ones you'll actually use.</p>
+    </div>
+
+    <nav class="toc">
+      <a href="#out-close"><span class="ic">🚶</span> Inside ten minutes</a>
+      <a href="#out-trails"><span class="ic">🥾</span> Trails worth the drive</a>
+      <a href="#out-water"><span class="ic">🏊</span> Swimming &amp; paddling</a>
+      <a href="#out-farms"><span class="ic">🍎</span> Farms &amp; picking</a>
+      <a href="#out-dog"><span class="ic">🐕</span> With the dog</a>
+      <a href="#out-season"><span class="ic">🍂</span> By season</a>
+    </nav>
+
+    <section class="section" id="out-close">
+      <p class="kicker">No planning required</p>
+      <h2><span class="ic">🚶</span> The four best things inside ten minutes</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Broadmoor Wildlife Sanctuary</h4>
+          <p class="where">📍 Mass Audubon, Natick · Ring 1</p>
+          <p>624 acres and <strong>nine miles of trails</strong> in your own town, running from easy to rugged: mature woodland into open fields, along streams, ponds and marsh. Boardwalks put you over the water, which is why the turtle and heron sightings are reliable rather than lucky.</p>
+          <p>There's a 0.6-mile All Persons Trail that's fully accessible, which makes this the one to bring visiting grandparents to. Program calendar includes owl prowls, canoe trips and guided birding.</p>
+          <p class="small">Note: Mass Audubon sanctuaries generally do <em>not</em> allow dogs. Plan this one without the dog.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Kids</span><span class="tag mod">Members free</span></div>
+        </div>
+        <div class="card">
+          <h4>Cochituate Rail Trail</h4>
+          <p class="where">📍 Natick Center to Saxonville, Framingham · Ring 1</p>
+          <p>Four miles of paved shared-use path connecting downtown Natick with the Natick Mall and the Golden Triangle, crossing Routes 9 and 30 to meet Framingham's completed section into Saxonville village. Flat, car-free, and usable by everyone in the family at once.</p>
+          <p><strong>New since February 2026:</strong> an additional 0.4 miles running to the MBTA Natick Center platform with a ramp down to Main Street. An extension along Route 9 toward West Natick — the Lake Cochituate Path — is expected to start construction in 2026–27.</p>
+          <p class="small">friendsofnaticktrails.org</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Free</span><span class="tag dog">Dog OK</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>Cochituate State Park</h4>
+          <p class="where">📍 Natick · Ring 1</p>
+          <p>A 625-acre three-lake system spanning Natick, Framingham and Wayland, with a <strong>lifeguarded sand swimming beach</strong>, boating, windsurfing, fishing, playing fields and charcoal grills. This is the town's summer default and it's genuinely good — most people drive an hour to a worse beach.</p>
+          <p>$8 parking. Weekends fill early; a 6pm weekday swim is the underused version.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">$8 parking</span><span class="tag kids">Kids</span><span class="tag season">Summer</span></div>
+        </div>
+        <div class="card">
+          <h4>South Natick Falls</h4>
+          <p class="where">📍 South Natick · Ring 1</p>
+          <p>A small dam and falls on the Charles with a park beside it, five minutes from the center of town, and the definition of a local secret that isn't really a secret — just chronically unvisited. Ten-minute stop, good on the way to or from Lookout Farm.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Free</span><span class="tag dog">Dog OK</span></div>
+        </div>
+      </div>
+      <div class="callout tip"><strong>Coming late 2026:</strong> the Pickerel Pond Connector, a 195-foot floating boardwalk linking the Oakdale and Wethersfield neighborhoods. Construction starts in late August 2026. Worth knowing about before it opens, because the first month it's open will be the emptiest.</div>
+    </section>
+
+    <section class="section" id="out-trails">
+      <p class="kicker">Twenty to forty minutes</p>
+      <h2><span class="ic">🥾</span> Trails worth the drive</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Noanet Woodlands</h4>
+          <p class="where">📍 Dover · The Trustees · Ring 1</p>
+          <p>The best hike near Natick, and it isn't close. Miles of wooded trail, old mill ponds, open fields, and a climb to <strong>Noanet Peak</strong> where on a clear day you can see the Boston skyline from a rock outcrop. Under an hour round trip if you go straight up.</p>
+          <p><strong>Dog rule, precisely:</strong> dogs may be off leash on the Trustees' Noanet Woodlands property. The adjacent Caryl Park, where much of the good parking is, is owned by the Town of Dover and does <em>not</em> permit off leash. Know which side of the line you're on.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag dog">Off leash (partly)</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>Rocky Narrows Reservation</h4>
+          <p class="where">📍 Sherborn · The Trustees · Ring 1</p>
+          <p>Wooded trails along the Charles where the river cuts through a gorge — the "Gates of the Charles." Quieter than Noanet, with a good overlook and river access. The reliable alternate when the Noanet lot is full, which on a nice Saturday it will be.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag dog">Dog OK</span></div>
+        </div>
+        <div class="card">
+          <h4>Callahan State Park</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>A big, varied trail network across every skill level, used year-round for hiking, mountain biking and cross-country skiing. Less scenic than the Trustees properties and much less crowded, which makes it the everyday one rather than the destination one.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Free</span><span class="tag dog">Dog OK</span></div>
+        </div>
+        <div class="card">
+          <h4>Hopkinton State Park</h4>
+          <p class="where">📍 Hopkinton · Ring 2</p>
+          <p>Extensive trails for hiking and mountain biking plus fishing, boating, and a beach that becomes the swimming-and-picnicking hub in summer. The bigger, more developed version of Cochituate — worth the extra fifteen minutes when Cochituate is full.</p>
+          <div class="meta"><span class="tag mod">15–40 min</span><span class="tag kids">Kids</span><span class="tag season">Summer beach</span></div>
+        </div>
+        <div class="card">
+          <h4>Ashland Reservoir</h4>
+          <p class="where">📍 Ashland State Park · Ring 1</p>
+          <p>A flat loop trail around the water with a beach — the easiest "everyone including the eight-year-old and the dog completes it without complaint" hike on this page. Under three miles.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Easy</span><span class="tag dog">Dog OK</span></div>
+        </div>
+        <div class="card">
+          <h4>Hamlen Woods &amp; Mainstone Farm</h4>
+          <p class="where">📍 Wayland · Ring 1</p>
+          <p>A short loop through good forest on conservation land that almost nobody outside Wayland walks. Exactly the kind of place that fills a spare hour without feeling like an expedition.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Free</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="out-water">
+      <p class="kicker">On the water</p>
+      <h2><span class="ic">🏊</span> Swimming and paddling</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Natick Boathouse, Lake Cochituate</h4>
+          <p class="where">📍 25 Commonwealth Rd, Natick · Ring 1</p>
+          <p>Kayaks, canoes, paddleboards and pedal boats to rent, plus classes, camps and wildlife tours. Kayaks are rated for ages 8 and up, so both boys can each be in their own boat. Sailboats are for season pass holders who've passed a check-out — see the Sports page.</p>
+          <p>$8 parking, weekends are walk-up only, and the park hits capacity on hot days. Go early or go at 5pm.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Ages 8+</span><span class="tag season">May–Sept</span></div>
+        </div>
+        <div class="card">
+          <h4>Charles River Canoe &amp; Kayak</h4>
+          <p class="where">📍 Multiple Charles River sites incl. Natick · Ring 1–2</p>
+          <p>The regional paddling operation, with locations up and down the Charles. The upper Charles through Natick, Dover and Sherborn is slow, green, and much wilder than the Boston stretch — herons, turtles, and almost no motorboats.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>The swimming shortlist</h4>
+          <p><strong>Cochituate State Park</strong> — lifeguarded sand beach, ten minutes, $8. The default.<br>
+          <strong>Hopkinton State Park</strong> — bigger beach, more facilities, twenty-five minutes.<br>
+          <strong>Ashland State Park</strong> — reservoir beach, smaller crowds, walkable loop attached.</p>
+          <p>All three are state parks with the same parking-fee model and the same "arrive before 11am on a hot Saturday" rule.</p>
+          <div class="meta"><span class="tag cheap">$8ish</span><span class="tag season">Summer</span></div>
+        </div>
+        <div class="card">
+          <h4>Fishing</h4>
+          <p class="where">📍 Lake Cochituate · Ring 1</p>
+          <p>The lake is stocked and the town runs a Lake Cochituate Fishing Classic in summer — a genuinely good low-effort activity for the younger one. A Massachusetts freshwater license is required for adults 15 and over; under-15s fish free.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">License ~$28</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="out-farms">
+      <p class="kicker">Agricultural</p>
+      <h2><span class="ic">🍎</span> Farms, picking, and animals</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Belkin Family Lookout Farm</h4>
+          <p class="where">📍 89 Pleasant St South, South Natick · Ring 1</p>
+          <p>Established in <strong>1651</strong> and one of the oldest continuously working farms in the United States, which is a genuinely remarkable thing to have five minutes away. U-pick orchard, corn maze, tractor play area, train ride, petting animals, farm market, live music, and a year-round taproom and restaurant.</p>
+          <dl class="facts">
+            <dt>U-pick calendar</dt><dd>Peaches from mid-to-late July · early apples in August · full swing in September with apples, Asian pears, and the Barnyard Play Area open</dd>
+            <dt>Worth doing</dt><dd>A season pass includes orchard access and discounted picking bags. If you'd go more than twice, it pays.</dd>
+          </dl>
+          <p class="small">lookoutfarm.com</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Kids</span><span class="tag season">Jul–Oct</span></div>
+        </div>
+        <div class="card">
+          <h4>Natick Community Organic Farm</h4>
+          <p class="where">📍 Natick · Ring 1</p>
+          <p>A nonprofit certified-organic farm running hands-on education year-round for all ages, with farm products and open space that's free to walk. <strong>Maple sugaring in March</strong> is the standout — a genuine seasonal ritual, ten minutes from home, that most families in town have never done.</p>
+          <p class="small">natickfarm.org</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Free to visit</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>Natick Farmers Market</h4>
+          <p class="where">📍 Natick Common · Ring 1</p>
+          <p>Saturdays, 9am to 1pm, in season, on the Common. Run through the Natick Center Cultural District. The anchor of a good Saturday morning downtown, and the thing that makes the walkable-downtown argument real.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Free</span><span class="tag season">Summer–fall</span></div>
+        </div>
+        <div class="card">
+          <h4>Southwick's Zoo</h4>
+          <p class="where">📍 Mendon · Ring 2</p>
+          <p>New England's largest zoo, on 200-plus acres about 40 minutes south. Aimed squarely at the younger end, so this is a "younger brother's day" rather than a family default — but it's the real thing, not a petting farm.</p>
+          <div class="meta"><span class="tag mod">40 min</span><span class="tag kids">Younger</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="out-dog">
+      <p class="kicker">The dog gets a vote</p>
+      <h2><span class="ic">🐕</span> Where the dog can actually come</h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Place</th><th>Dog policy</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Noanet Woodlands</strong>, Dover</td><td>Off leash permitted on Trustees land</td><td>The best off-leash hike near you. But the adjoining <strong>Caryl Park is Town of Dover land and is leash-only</strong> — and that's where much of the parking is. Know the boundary.</td></tr>
+            <tr><td><strong>Rocky Narrows</strong>, Sherborn</td><td>Dogs welcome (Trustees)</td><td>River trails, quieter than Noanet. Check the current Trustees dog page for property-specific seasonal rules.</td></tr>
+            <tr><td><strong>Callahan State Park</strong>, Framingham</td><td>Leashed</td><td>Big network, forgiving surface, close. The everyday walk.</td></tr>
+            <tr><td><strong>Cochituate Rail Trail</strong></td><td>Leashed</td><td>Paved and flat, so it works for an older dog or a bad-weather day.</td></tr>
+            <tr><td><strong>Ashland Reservoir loop</strong></td><td>Leashed</td><td>Flat water-loop walk the whole family finishes together.</td></tr>
+            <tr><td><strong>Broadmoor</strong> (Mass Audubon)</td><td>No dogs</td><td>Mass Audubon sanctuaries generally prohibit dogs to protect wildlife. Plan Broadmoor separately.</td></tr>
+            <tr><td><strong>State park beaches</strong></td><td>No dogs at swimming beaches in season</td><td>Standard DCR rule. Off-season access varies — check the specific park.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="vnote">Dog rules are the single most frequently changed policy in this guide and vary property by property, even between adjacent parcels. Check the managing organization's page for the specific property before you go.</p>
+    </section>
+
+    <section class="section" id="out-season">
+      <p class="kicker">Timing</p>
+      <h2><span class="ic">🍂</span> What each season is actually good for here</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h4>Spring</h4>
+          <p><strong>March:</strong> maple sugaring at Natick Community Organic Farm. Vernal pools come alive — the Cape Ann Vernal Pond Team's season, and the best time to see spotted salamanders and wood frogs.</p>
+          <p><strong>April:</strong> Garden in the Woods reopens mid-month, and the spring ephemerals are the entire reason that garden exists. Two-week window.</p>
+          <p><strong>May:</strong> the boathouse opens; native plant sales; trails dry out.</p>
+          <div class="meta"><span class="tag season">Mar–May</span></div>
+        </div>
+        <div class="card">
+          <h4>Summer</h4>
+          <p><strong>June–July:</strong> Cochituate beach, evening paddles, U-pick peaches from mid-July at Lookout Farm.</p>
+          <p><strong>August:</strong> fair season starts, early apples, and the best month for a 6am ride before the heat.</p>
+          <p>Beat the crowds by going after 4pm: the state park beaches empty out and the water is warmest.</p>
+          <div class="meta"><span class="tag season">Jun–Aug</span></div>
+        </div>
+        <div class="card">
+          <h4>Fall &amp; winter</h4>
+          <p><strong>September–October:</strong> apple picking, Natick Days, the Harvard–Bolton ridge roads at peak foliage, and mushroom season for the Mycological Club.</p>
+          <p><strong>November–December:</strong> bare-branch hiking with long views, tree lightings, and the last gravel before the salt.</p>
+          <p><strong>January–March:</strong> Callahan on skis for free, Nashoba at night, Weston Ski Track under lights.</p>
+          <div class="meta"><span class="tag season">Sep–Mar</span></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="backtop"><a href="#home">← Back to start</a></p>
+  </div>
+</section>
+<section class="guidesec" id="eat" data-guide hidden>
+  <div class="wrap">
+    <div class="guidehead">
+      <p class="kicker">Guide 6</p>
+      <h2 class="guidetitle" style="font-family:var(--serif);color:var(--navy)">Eats</h2>
+      <p class="homeintro">Two audiences, one table: boys who want Italian and American, and adults who'll eat anything interesting. The good news is that South Framingham is one of the best food neighborhoods in the state, and almost nobody west of it seems to know.</p>
+    </div>
+
+    <nav class="toc">
+      <a href="#eat-cheese"><span class="ic">🧀</span> Cheese &amp; olives first</a>
+      <a href="#eat-boys"><span class="ic">🍕</span> The boys' table</a>
+      <a href="#eat-brazil"><span class="ic">🇧🇷</span> Little Brazil</a>
+      <a href="#eat-downtown"><span class="ic">🏘️</span> Downtown Natick</a>
+      <a href="#eat-breweries"><span class="ic">🍺</span> Breweries that feed you</a>
+    </nav>
+
+    <section class="section" id="eat-cheese">
+      <p class="kicker">Because it was specifically requested</p>
+      <h2><span class="ic">🧀</span> Cheese and olives, done seriously</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Wasik's Cheese Shop</h4>
+          <p class="where">📍 61 Central St, Wellesley · 781-237-0916 · Ring 1</p>
+          <p>One of the oldest full-service cheese counters in the country, in business since <strong>1964</strong>, with up to <strong>300 cheeses in the case</strong> at a time — and a 3,000-cubic-foot aging cave <em>under the shop</em> where wheels sit until they're actually ready. That last part is what separates a cheesemonger from a cheese retailer.</p>
+          <p>They'll build pairings across cheese, charcuterie, wine, bread, crackers and <strong>olives</strong>, and the correct way to shop there is to tell them what you're doing and let them drive.</p>
+          <p class="small">wasiks.com</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Worth it</span></div>
+        </div>
+        <div class="card">
+          <h4>The Concord Cheese Shop</h4>
+          <p class="where">📍 Downtown Concord · Ring 2</p>
+          <p>The other pilgrimage, and the one with the stronger olive claim — regulars call theirs the freshest around, and the olive oil and vinegar selection backs it up. Also pasta, crackers, jams, chocolate, and an unusually deep tea wall. Anchors a walkable Concord morning with Thoreauly Antiques a few doors down.</p>
+          <p class="small">concordcheeseshop.com</p>
+          <div class="meta"><span class="tag mod">15–40 min</span></div>
+        </div>
+      </div>
+      <div class="callout tip"><strong>The move:</strong> Wasik's late on a Friday afternoon, ask what's peaking, add olives and one wild card. That's Saturday lunch solved for the adults while the boys eat pizza, and it costs less than a restaurant.</div>
+    </section>
+
+    <section class="section" id="eat-boys">
+      <p class="kicker">Italian and American, kid-approved</p>
+      <h2><span class="ic">🍕</span> The boys' table</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Comella's</h4>
+          <p class="where">📍 Downtown Natick · Ring 1</p>
+          <p>Family-owned Italian with enormous portions of the classics — their "mess" dishes are half the reputation. This is the red-sauce answer closest to the house, and leftovers are guaranteed.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Cheap–moderate</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>Lola's Italian Kitchen &amp; Market</h4>
+          <p class="where">📍 Downtown Natick · Ring 1</p>
+          <p>Italian kitchen plus market, which means dinner out one night and take-home pasta and sauce the next. The market half makes it more useful than a restaurant alone.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Moderate</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>Bella Costa</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>Framingham's long-running family-owned Italian, repeatedly voted the city's best. The step-up-a-notch option for a birthday dinner that still welcomes kids without a flicker.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Moderate</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>Alta Strada</h4>
+          <p class="where">📍 Wellesley · Ring 1</p>
+          <p>The adults' Italian that still works with children: proper pasta, crisp thin pizza, antipasti, reasonable prices for what it is. Tuscany-and-Amalfi menu rather than red-sauce — good for showing the boys that "Italian" is bigger than they think.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Moderate+</span><span class="tag kids">Kids OK</span></div>
+        </div>
+        <div class="card">
+          <h4>Ziti's Italian Trattoria</h4>
+          <p class="where">📍 Near Natick · Ring 1</p>
+          <p>Big portions, easygoing room, priced for a family of four on a Wednesday. The utility infielder of this list.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Cheap–moderate</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>American: burgers and breakfast</h4>
+          <p class="where">📍 Downtown Natick · Ring 1</p>
+          <p><strong>Eli's</strong> covers the cozy breakfast-burgers-and-beer lane downtown; <strong>Buttercup</strong> does the nicer brunch with outdoor seating; <strong>7 South Bottle + Kitchen</strong> holds the middle. Between the three, the American half of the boys' brief is fully covered within one block's walk.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Kids</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="eat-brazil">
+      <p class="kicker">For the adventurous half</p>
+      <h2><span class="ic">🇧🇷</span> Little Brazil, ten minutes away</h2>
+      <p class="lede">South Framingham has been called the best place in the United States for authentic Brazilian food — that's a national claim, made about the neighborhood ten minutes from Julia's desk. This is the single biggest "adventurous adults" asset in their area.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Terra Brasilis</h4>
+          <p class="where">📍 Union Ave (and Waverly St), Framingham · Ring 1</p>
+          <p>The standard-bearer: a por-kilo buffet plus meats carved off skewers at the counter, and a room where most of the other tables are speaking Portuguese. Feels like a meal in Brazil because functionally it is one.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Cheap–moderate</span></div>
+        </div>
+        <div class="card">
+          <h4>Café Belô</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>Ten kinds of slow-roasted meat off skewers, a twelve-dish hot buffet, real Brazilian appetizers, and fresh fruit juices the boys will actually drink. The best first visit for the whole family, because everyone assembles their own plate.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Cheap–moderate</span><span class="tag kids">Kids OK</span></div>
+        </div>
+        <div class="card">
+          <h4>Boteco do Manolo &amp; Sabor de Minas</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>The next layer down: smaller rooms, more specific menus, and the places you graduate to after the buffets. Boteco is the bar-snacks-and-beer expression; Sabor de Minas leans homestyle Minas Gerais cooking.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Cheap</span></div>
+        </div>
+        <div class="card">
+          <h4>The bakery-counter version</h4>
+          <p class="where">📍 Waverly &amp; Concord St corridor, Framingham · Ring 1</p>
+          <p>The Brazilian bakeries and markets along the corridor sell pão de queijo, coxinha, and pastéis at counter prices. A five-dollar experiment on a Saturday errand, and the lowest-stakes way to bring the boys into it — pão de queijo is cheese bread, and no child has ever rejected cheese bread.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Under $10</span><span class="tag kids">Kids</span></div>
+        </div>
+      </div>
+      <p class="vnote">Restaurant specifics move fast in this neighborhood; the anchors above were open and well-reviewed as of July 2026. A new rodízio spot at the old H.H. Richardson train station downtown was announced — worth watching.</p>
+    </section>
+
+    <section class="section" id="eat-downtown">
+      <p class="kicker">The home block</p>
+      <h2><span class="ic">🏘️</span> Downtown Natick, walking order</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>The show-night pairing</h4>
+          <p>TCAN is at 14 Summer St, and everything above — Comella's, Lola's, Eli's, Buttercup, Dah-Mee — is within a five-minute walk of its door. Dinner at 6, show at 8, home by 10:30. This combination is most of the reason to care that downtown Natick exists.</p>
+          <div class="meta"><span class="tag close">Walkable</span></div>
+        </div>
+        <div class="card">
+          <h4>Dah-Mee</h4>
+          <p class="where">📍 Washington &amp; South Ave · Ring 1</p>
+          <p>Nearly twenty years of pad thai, kimchi and sushi at the corner by the station — the reliable non-Italian option downtown, and a decent gateway dish or two for the boys.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag cheap">Cheap–moderate</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="eat-breweries">
+      <p class="kicker">Where music and food overlap</p>
+      <h2><span class="ic">🍺</span> Breweries that feed a family</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Jack's Abby Beer Hall &amp; Kitchen</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>Lager brewery with a full kitchen — wood-fired pizza in a big hall with long tables, which is the exact format where two boys, two adults and a Saturday evening all work at once. Live music some Saturdays 7–10pm. The annual anniversary weekend in July is a full mini-festival.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Kids OK</span><span class="tag free">No cover</span></div>
+        </div>
+        <div class="card">
+          <h4>Lookout Farm Taproom</h4>
+          <p class="where">📍 South Natick · Ring 1</p>
+          <p>The farm's own brewing and cider operation, open year-round with food. In fall you can pick apples and then drink them, which is about as complete as a local afternoon gets.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">Kids OK</span><span class="tag season">Best in fall</span></div>
+        </div>
+        <div class="card">
+          <h4>Exhibit 'A' Brewing</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>Taproom with Friday live music, comedy nights, and the open mic covered on Grafton's page. More taproom than restaurant — food trucks and lighter fare — so it's the adults' stop rather than the family dinner.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">No cover</span></div>
+        </div>
+        <div class="card">
+          <h4>Cold Harbor &amp; the Worcester circuit</h4>
+          <p class="where">📍 Westborough / Worcester · Ring 2</p>
+          <p>Cold Harbor in Westborough anchors the next ring out, and Worcester's brewery-and-venue overlap (Off The Rails, Ralph's) makes a proper night of it. For the adults' nights, not the family ones.</p>
+          <div class="meta"><span class="tag mod">15–40 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="backtop"><a href="#home">← Back to start</a></p>
+  </div>
+</section>
+<section class="guidesec" id="evt" data-guide hidden>
+  <div class="wrap">
+    <div class="guidehead">
+      <p class="kicker">Guide 7</p>
+      <h2 class="guidetitle" style="font-family:var(--serif);color:var(--navy)">Events, fairs &amp; town life</h2>
+      <p class="homeintro">2026 is a strange and good year for this: it's the country's 250th anniversary and Natick's 375th, so the town calendar is heavier than usual. Confirmed dates first, then the annual rhythms, then how to find the civic stuff — the rallies, parades and community events that never make event listings.</p>
+    </div>
+
+    <nav class="toc">
+      <a href="#evt-now"><span class="ic">📌</span> Confirmed 2026 dates</a>
+      <a href="#evt-fairs"><span class="ic">🎡</span> Fair season</a>
+      <a href="#evt-annual"><span class="ic">🔁</span> The annual rhythm</a>
+      <a href="#evt-civic"><span class="ic">📣</span> Civic life &amp; how to find it</a>
+    </nav>
+
+    <section class="section" id="evt-now">
+      <p class="kicker">On the calendar now</p>
+      <h2><span class="ic">📌</span> Confirmed 2026 dates, nearest first</h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><span class="mo">Fri Jul 31 + Sat Aug 1</span></td><td><strong>Phish at Fenway Park</strong></td><td>Boston</td><td>6:30pm both nights. Four-ticket limit. Commuter rail to Back Bay, then the Fenway walk.</td></tr>
+            <tr><td><span class="mo">Sat–Sun Aug 1–2</span></td><td><strong>Pan-Mass Challenge</strong></td><td>Through Natick, Framingham, Wellesley</td><td>Wellesley route starts and finishes at Babson. Cheering-spot maps at pmc.org/neighbors.</td></tr>
+            <tr><td><span class="mo">Tue Aug 4</span></td><td><strong>Natick Night Out</strong></td><td>Natick High School, 4–8pm</td><td>Free food and games with Natick PD, part of National Night Out.</td></tr>
+            <tr><td><span class="mo">Wed Aug 6</span></td><td><strong>Natick Nights</strong> (rain: Aug 13)</td><td>Downtown Natick, 5–8pm</td><td>Street fair themed to the 250th/375th. Free. The one to walk to.</td></tr>
+            <tr><td><span class="mo">Aug 14–16</span></td><td><strong>Bolton Fair</strong></td><td>Lancaster Fairgrounds, Rt 117</td><td>143rd edition. Small, agricultural, demolition derby, strong 4-H.</td></tr>
+            <tr><td><span class="mo">Aug 21–30</span></td><td><strong>Marshfield Fair</strong></td><td>Marshfield</td><td>Ten days; the biggest fair on the South Shore. Livestock, midway, derby, live music.</td></tr>
+            <tr><td><span class="mo">Sat Aug 22</span></td><td><strong>Multicultural Day</strong></td><td>Natick Common, 11am–2pm</td><td>Town event, free.</td></tr>
+            <tr><td><span class="mo">Sat Aug 22</span></td><td><strong>D2R2</strong></td><td>Deerfield</td><td>See Grafton's page. Spectating at a dirt-road rest stop is its own odd pleasure.</td></tr>
+            <tr><td><span class="mo">Aug 28–30</span></td><td><strong>Middlesex County 4-H Fair</strong></td><td>55 South Chelmsford Rd, Westford</td><td>Youth-run, non-commercial. Kids showing animals they raised. The anti-midway.</td></tr>
+            <tr><td><span class="mo">Sat Sep 19</span> (rain: Sep 20)</td><td><strong>Natick Days</strong></td><td>Natick Common</td><td>The town's big one: youth groups and nonprofits, mini golf, bounce houses, pony rides, touch-a-truck. Thousands attend.</td></tr>
+            <tr><td><span class="mo">Oct 2–12</span></td><td><strong>Topsfield Fair</strong></td><td>Topsfield</td><td>America's oldest county fair. Go on a weekday; the giant pumpkins do not require a weekend crowd.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="vnote">All dates verified against town or organizer sources in July 2026.</p>
+    </section>
+
+    <section class="section" id="evt-fairs">
+      <p class="kicker">Choosing among fairs</p>
+      <h2><span class="ic">🎡</span> Fair season, decoded</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>If you go to one: Bolton</h4>
+          <p class="where">📍 Lancaster Fairgrounds · Aug 14–16 · Ring 2</p>
+          <p>Close, right-sized, and still an agricultural fair rather than a carnival with cows in the corner. Baking competitions, tractor pulls, 4-H barns, demolition derby. A half-day, not a campaign.</p>
+          <div class="meta"><span class="tag mod">~40 min</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>If the boys want the midway: Marshfield</h4>
+          <p class="where">📍 Marshfield · Aug 21–30 · Ring 3</p>
+          <p>Ten days, full-scale rides, fair food, horse shows, derby nights. It's the South Shore's summer institution and worth the hour drive exactly once a year.</p>
+          <div class="meta"><span class="tag mod">~60 min</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>The sleeper: Middlesex County 4-H</h4>
+          <p class="where">📍 Westford · Aug 28–30 · Ring 2</p>
+          <p>Entirely youth-run and non-commercial — kids exhibiting livestock and projects they spent a year on. No midway economics, tiny entry cost, and the best animal access of any of them. The right fair for a family that likes the animals more than the rides.</p>
+          <div class="meta"><span class="tag cheap">Cheap</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>The institution: Topsfield</h4>
+          <p class="where">📍 Topsfield · Oct 2–12 · Ring 3</p>
+          <p>The oldest county fair in America and the biggest in this list. Giant pumpkin weigh-off, full agricultural program, big-name midway. Everyone should do it once; after that, weekdays only.</p>
+          <div class="meta"><span class="tag mod">~50 min</span><span class="tag kids">Kids</span></div>
+        </div>
+      </div>
+      <div class="callout"><strong>Also in the family:</strong> The Big E in West Springfield (late Sept, the New England states' shared fair, enormous) and the county fairs of southern NH, all within Ring 3. And the two <strong>Massachusetts Reptile Expo</strong> dates in Hanover, which for this family count as fairs.</div>
+    </section>
+
+    <section class="section" id="evt-annual">
+      <p class="kicker">Every year, roughly on schedule</p>
+      <h2><span class="ic">🔁</span> The annual rhythm within 15 minutes</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Natick's own cycle</h4>
+          <p><strong>July 4:</strong> Community Picnic on the Common, noon–4 — music, games, food trucks, and a kids' parade of decorated bikes and wagons.<br>
+          <strong>Summer:</strong> Concerts on the Common weekly; Natick Nights street fairs monthly-ish; Farmers Market every Saturday morning.<br>
+          <strong>September:</strong> Natick Days, the anchor.<br>
+          <strong>December:</strong> tree lighting and holiday events downtown.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Mostly free</span><span class="tag kids">Kids</span></div>
+        </div>
+        <div class="card">
+          <h4>Framingham's cycle</h4>
+          <p><strong>Fridays Jul–Aug:</strong> Friday Night Concert Series, 6–8pm, rotating parks.<br>
+          <strong>July:</strong> Jack's Abby anniversary fairgrounds weekend.<br>
+          <strong>Fall:</strong> Jack's Abby Oktoberfest, nine days of it.<br>
+          <strong>Year-round:</strong> Danforth Art Museum rotating shows; Amazing Things programming.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag free">Mostly free</span></div>
+        </div>
+        <div class="card">
+          <h4>The regional set pieces</h4>
+          <p><strong>Patriots' Day (April):</strong> the Lexington and Concord reenactments — in 2026, the 251st anniversary, still riding the wave of the semiquincentennial. Dawn on Lexington Green is genuinely stirring and genuinely early.<br>
+          <strong>October:</strong> HONK! festival of activist street bands in Somerville — free, loud, wonderful, and exactly the kind of thing a bass player should see once.<br>
+          <strong>December:</strong> First Night Boston on New Year's Eve.</p>
+          <div class="meta"><span class="tag mod">15–40 min</span><span class="tag free">Free</span></div>
+        </div>
+        <div class="card">
+          <h4>Natick 375 / America 250</h4>
+          <p>Both anniversaries run through 2026, and the town is hanging events on them all year — the Aug 6 Natick Nights is explicitly themed to both. The Natick Historical Society's calendar is the place to watch for the commemorative programming, which tends to be announced with short notice.</p>
+          <p class="small">natickhistoricalsociety.org · natickcenter.org</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag season">2026 only</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="evt-civic">
+      <p class="kicker">Parades, rallies, and the things that never get listed</p>
+      <h2><span class="ic">📣</span> How to actually hear about civic life</h2>
+      <p class="lede">Civic events — parades, rallies, vigils, town celebrations, protests — mostly spread through local channels a week or less in advance. Rather than a stale list, here's the standing infrastructure that carries them.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>The Natick Report</h4>
+          <p class="where">📍 natickreport.com · free</p>
+          <p>Independent local news for exactly this town, run by the same people as the Swellesley Report. Covers town meetings, school news, events, openings and closings. <strong>This is the single subscription that replaces this whole section.</strong> Their events calendar is where the July 4 schedule, Natick Nights, and the civic gatherings actually get announced.</p>
+          <div class="meta"><span class="tag free">Free</span></div>
+        </div>
+        <div class="card">
+          <h4>Natick Center Cultural District</h4>
+          <p class="where">📍 natickcenter.org · 508-650-8848</p>
+          <p>The organization behind Natick Nights, the farmers market, and the downtown arts calendar — a state-designated cultural district with more than a hundred working artists. Their mailing list is the second subscription.</p>
+          <div class="meta"><span class="tag free">Free</span></div>
+        </div>
+        <div class="card">
+          <h4>The town's own calendar</h4>
+          <p class="where">📍 natickma.gov/calendar</p>
+          <p>Dry but authoritative: recreation programs, town celebrations, board meetings, and the community-submitted calendar. Also where you learn about things like the Pickerel Pond boardwalk before they exist.</p>
+          <div class="meta"><span class="tag free">Free</span></div>
+        </div>
+        <div class="card">
+          <h4>For marches, rallies and vigils specifically</h4>
+          <p>These organize through town Facebook groups, the Natick Common gazebo (the town's default gathering point), and regional organizations' mailing lists. The Common and the Framingham Centre Common are the two standing venues; if something is happening locally, it's happening at one of them. For Boston-scale events, the commuter rail is the way in and out.</p>
+          <div class="meta"><span class="tag free">Free</span></div>
+        </div>
+      </div>
+      <div class="callout tip"><strong>The two-subscription setup:</strong> Natick Report email plus the Cultural District list covers 90% of what this family would want to know is happening, a week before it happens, with zero searching.</div>
+    </section>
+
+    <p class="backtop"><a href="#home">← Back to start</a></p>
+  </div>
+</section>
+<section class="guidesec" id="mak" data-guide hidden>
+  <div class="wrap">
+    <div class="guidehead">
+      <p class="kicker">Guide 8</p>
+      <h2 class="guidetitle" style="font-family:var(--serif);color:var(--navy)">Makers &amp; workshops</h2>
+      <p class="homeintro">Split by commitment level: one-night things you can book this week, and real studios where you learn an actual skill over a season. Framingham quietly has the best ceramics scene in MetroWest.</p>
+    </div>
+
+    <nav class="toc">
+      <a href="#mak-night"><span class="ic">🌙</span> One night, no commitment</a>
+      <a href="#mak-studio"><span class="ic">🏺</span> Real studios</a>
+      <a href="#mak-fire"><span class="ic">🔥</span> Glass, worth the drive</a>
+      <a href="#mak-kids"><span class="ic">✂️</span> With the kids</a>
+    </nav>
+
+    <section class="section" id="mak-night">
+      <p class="kicker">Book it this week</p>
+      <h2><span class="ic">🌙</span> One-night workshops</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Canvas n Cup</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>The local paint-and-sip studio, with a pick-your-project format that goes beyond canvas — wood signs, glass, coasters. The lowest-stakes girls'-night or date-night maker option within fifteen minutes.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">$35–55</span></div>
+        </div>
+        <div class="card">
+          <h4>Community Kiln — workshops</h4>
+          <p class="where">📍 46 Park St, Framingham · Ring 1</p>
+          <p>Alongside their class program (below), they run one-off clay workshops for all ages and abilities. A single wheel-throwing taster is the right way to find out whether pottery is a passing thought or the start of something.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Workshop pricing</span><span class="tag kids">All ages</span></div>
+        </div>
+        <div class="card">
+          <h4>Candle pouring &amp; the Boston one-offs</h4>
+          <p class="where">📍 Boston / Cambridge · Ring 2</p>
+          <p>Candle-making, terrarium-building (note the Emmet crossover), and similar single-evening workshops run continuously in Boston and Cambridge — Eventbrite and The Boston Calendar are the reliable indexes. Pair one with a commuter-rail dinner trip rather than driving in for it alone.</p>
+          <div class="meta"><span class="tag transit">Train</span><span class="tag mod">$40–75</span></div>
+        </div>
+        <div class="card">
+          <h4>Library maker programs</h4>
+          <p class="where">📍 Morse Institute, Natick · Ring 1</p>
+          <p>Free one-session workshops — the 3D printing intro among them — plus a maker lab. The zero-cost way to sample a skill before paying a studio for it.</p>
+          <div class="meta"><span class="tag free">Free</span><span class="tag close">15 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="mak-studio">
+      <p class="kicker">A season, not a night</p>
+      <h2><span class="ic">🏺</span> Real studios</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Brickstack Ceramics</h4>
+          <p class="where">📍 Framingham · Ring 1</p>
+          <p>Adult pottery in five-week sessions at about <strong>$250 including 25 pounds of clay, glazes, firing, and open studio time</strong> — which is the number that matters, because open studio hours are where you actually improve. Beginner handbuilding through wheel and advanced tracks.</p>
+          <p class="small">brickstack.org</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">$250/5 wks</span></div>
+        </div>
+        <div class="card">
+          <h4>Community Kiln</h4>
+          <p class="where">📍 46 Park St, Framingham · Ring 1</p>
+          <p>The other Framingham ceramics home, explicitly built as a community studio for all ages and levels, intro through advanced. Having two good studios in one small city means classes actually have open seats — a MetroWest luxury.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Session pricing</span><span class="tag kids">All ages</span></div>
+        </div>
+        <div class="card">
+          <h4>Woodworking</h4>
+          <p class="where">📍 Regional · Ring 2–3</p>
+          <p>The serious woodworking schools cluster in Boston and the North Shore rather than MetroWest. If the interest is real, look at the established multi-week furniture programs rather than a one-night cutting-board class; the skills gap between them is enormous. Landscaper's hands plus a winter woodworking course is a natural fit for Grafton's off-season.</p>
+          <div class="meta"><span class="tag mod">Drive + fee</span></div>
+        </div>
+        <div class="card">
+          <h4>The Danforth Art School</h4>
+          <p class="where">📍 Framingham Centre Common · Ring 1</p>
+          <p>The museum runs an art school alongside its collection — drawing, painting, and studio programs for adults and kids, ten minutes away, attached to actual exhibitions. The most underused fine-arts resource in the area.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag mod">Course fee</span><span class="tag kids">Kids too</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="mak-fire">
+      <p class="kicker">The spectacular one</p>
+      <h2><span class="ic">🔥</span> Glassblowing</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>NOCA Glass School</h4>
+          <p class="where">📍 Cambridge · Ring 2</p>
+          <p>One- and two-day glassblowing workshops — you leave with a real blown piece and a healthy respect for the furnace. The standard first-experience recommendation, and a legitimately memorable anniversary or birthday gift.</p>
+          <div class="meta"><span class="tag mod">15–40 min</span><span class="tag mod">$$$ one-off</span></div>
+        </div>
+        <div class="card">
+          <h4>North Shore Glass School</h4>
+          <p class="where">📍 Salem · Ring 3</p>
+          <p>Weekend classes and group sessions on the North Shore. Pair with a Salem day trip in any month that isn't October, when the town is a costume-clogged parking lot.</p>
+          <div class="meta"><span class="tag mod">40–90 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="mak-kids">
+      <p class="kicker">Family-viable making</p>
+      <h2><span class="ic">✂️</span> With the boys</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Clay, together</h4>
+          <p>Community Kiln's all-ages framing makes it the one studio where a parent and both boys can be in the same session. Handbuilding first — the wheel humbles adults, let alone eight-year-olds.</p>
+          <div class="meta"><span class="tag close">15 min</span><span class="tag kids">All ages</span></div>
+        </div>
+        <div class="card">
+          <h4>The terrarium as craft project</h4>
+          <p>Worth saying twice: a bioactive terrarium build is a maker project — hardscape design, substrate layers, plant selection, a cleanup crew. Emmet is already the household's most experienced maker; the expo in Hanover is his supply run.</p>
+          <div class="meta"><span class="tag kids">Emmet</span></div>
+        </div>
+        <div class="card">
+          <h4>3D printing pipeline</h4>
+          <p>Tinkercad at home (free) → Morse Institute printing workshop (free) → printed object in hand. Repeatable, and the natural intersection of the game-design interest and physical making.</p>
+          <div class="meta"><span class="tag free">Free</span><span class="tag kids">Both boys</span></div>
+        </div>
+        <div class="card">
+          <h4>Fairs as output, not just outings</h4>
+          <p>The agricultural fairs on the Events page all run open competitions — baking, vegetables, crafts, photography — that anyone can enter for a dollar or two. Entering a kid's project in the Bolton Fair is a real deadline, a real audience, and possibly a ribbon. Better motivation than any class.</p>
+          <div class="meta"><span class="tag cheap">~$1–2 entry</span><span class="tag kids">Kids</span></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="backtop"><a href="#home">← Back to start</a></p>
+  </div>
+</section>
+<section class="guidesec" id="day" data-guide hidden>
+  <div class="wrap">
+    <div class="guidehead">
+      <p class="kicker">Guide 9</p>
+      <h2 class="guidetitle" style="font-family:var(--serif);color:var(--navy)">Day trips</h2>
+      <p class="homeintro">Rings 2 through 4: places that justify the car. Each one is a complete day with the parts already assembled, and each is picked because it serves at least two members of this family at once.</p>
+    </div>
+
+    <nav class="toc">
+      <a href="#day-r2"><span class="ic">🚗</span> Under 40 minutes</a>
+      <a href="#day-r3"><span class="ic">🛣️</span> 40–90 minutes</a>
+      <a href="#day-r4"><span class="ic">🧳</span> Worth the trip</a>
+    </nav>
+
+    <section class="section" id="day-r2">
+      <p class="kicker">Ring 2</p>
+      <h2><span class="ic">🚗</span> Under forty minutes</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Concord</h4>
+          <p class="where">📍 ~25 min · Ring 2</p>
+          <p><strong>The composite day:</strong> Concord Cheese Shop for the olives, Thoreauly Antiques for Julia, Walden Pond early or late (the lot closes when full), the Old North Bridge for free, and Great Brook Farm's ice cream barn in Carlisle on the way home. History for the boys is incidental and therefore painless.</p>
+          <div class="meta"><span class="tag kids">Everyone</span></div>
+        </div>
+        <div class="card">
+          <h4>Maynard</h4>
+          <p class="where">📍 ~30 min · Ring 2</p>
+          <p>The old mill town that quietly became MetroWest's arts hub: the Sanctuary music venue in a converted church, a walkable little downtown, and the Assabet River Rail Trail. Best executed as dinner-and-a-show for the adults; the mill complex is worth a daylight wander once.</p>
+          <div class="meta"><span class="tag mod">Show night</span></div>
+        </div>
+        <div class="card">
+          <h4>Worcester</h4>
+          <p class="where">📍 ~40 min · Ring 2–3</p>
+          <p>The second-biggest city in New England, treated by MetroWest as if it doesn't exist. Worcester Art Museum (arms and armor hall for the boys), the Palladium or Hanover for a show, the diner-car institutions, and a food scene that outperforms its reputation by a wide margin. A WooSox game at Polar Park is the cheaper, easier, better-with-kids version of Fenway.</p>
+          <div class="meta"><span class="tag kids">Everyone</span><span class="tag cheap">Cheap for a city</span></div>
+        </div>
+        <div class="card">
+          <h4>Boston, the low-friction version</h4>
+          <p class="where">📍 Commuter rail from Natick Center · Ring 2</p>
+          <p>The rule: never drive in with the kids. Train to Back Bay, then one anchor per trip — Museum of Science, the aquarium and the harbor walk, a Fenway tour, Boda Borg in Malden via the Orange Line. Museum passes from the Morse Institute cut the entry cost, sometimes by half.</p>
+          <div class="meta"><span class="tag transit">Train</span><span class="tag kids">Everyone</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="day-r3">
+      <p class="kicker">Ring 3</p>
+      <h2><span class="ic">🛣️</span> Forty to ninety minutes</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Cape Ann: Gloucester &amp; Rockport</h4>
+          <p class="where">📍 ~70 min · Ring 3</p>
+          <p>The working-harbor alternative to the Cape, with no bridge traffic. Fried fish on the Gloucester waterfront, Halibut Point's quarry-and-ocean walk, Rockport's Bearskin Neck. The Cape Ann Vernal Pond Team — Emmet's people — are from here. Swimming at Good Harbor Beach if you go early.</p>
+          <div class="meta"><span class="tag kids">Everyone</span><span class="tag dog">Off-season sand</span></div>
+        </div>
+        <div class="card">
+          <h4>Lowell</h4>
+          <p class="where">📍 ~45 min · Ring 3</p>
+          <p>The national park that's a whole downtown: mill tours, canal boats, trolleys — industrial history that reads as machinery rather than homework, which is the version boys accept. In late July it hosts the free folk festival from Grafton's page. Cheap, close, underrated.</p>
+          <div class="meta"><span class="tag cheap">Cheap</span><span class="tag kids">Everyone</span></div>
+        </div>
+        <div class="card">
+          <h4>Providence</h4>
+          <p class="where">📍 ~60 min · Ring 3</p>
+          <p>Closer than most of the Cape and better food per dollar than Boston. WaterFire nights (check the schedule) are the spectacle; the RISD Museum is the design-eye stop for Julia; Federal Hill is the Italian answer that outguns anything in MetroWest. An easy full day.</p>
+          <div class="meta"><span class="tag kids">Everyone</span></div>
+        </div>
+        <div class="card">
+          <h4>Purgatory Chasm</h4>
+          <p class="where">📍 Sutton, ~35 min · Ring 2–3</p>
+          <p>A quarter-mile granite chasm you scramble through rather than walk — the single most reliable "boys voluntarily exercise for two hours" destination in central Massachusetts. Free, with a state park around it. Closed in ice season for obvious reasons.</p>
+          <div class="meta"><span class="tag free">Free</span><span class="tag kids">Boys' pick</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="day-r4">
+      <p class="kicker">Ring 4</p>
+      <h2><span class="ic">🧳</span> Worth the trip</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>The Deerfield valley</h4>
+          <p class="where">📍 ~1:45 · Ring 4</p>
+          <p>Historic Deerfield's museum street, the Bridge of Flowers in Shelburne Falls, and the glacial potholes below it. This is also D2R2 country — riding those dirt roads recreationally, without the event, is a legitimate reason for the family to come along and meet Grafton at the Shelburne Falls end.</p>
+          <div class="meta"><span class="tag season">May–Oct</span></div>
+        </div>
+        <div class="card">
+          <h4>The Berkshires, off-peak</h4>
+          <p class="where">📍 ~2:15 · Ring 4</p>
+          <p>MASS MoCA in North Adams is the one museum in the state that a thirteen-year-old, an eight-year-old, a designer and a musician can all lose a day in — the scale is industrial and the art is frequently playable. Tanglewood lawn tickets in summer are the other half of the argument.</p>
+          <div class="meta"><span class="tag kids">Everyone</span></div>
+        </div>
+        <div class="card">
+          <h4>Southern Vermont</h4>
+          <p class="where">📍 ~2:00 · Ring 4</p>
+          <p>Brattleboro's gallery-walk downtown, the Manchester outlets if you must, and the Dead of Summer festival in July for Grafton. In winter this is also the honest answer to "real skiing": Mount Snow and Stratton are the nearest full-scale mountains.</p>
+          <div class="meta"><span class="tag season">All seasons</span></div>
+        </div>
+        <div class="card">
+          <h4>Portland, Maine</h4>
+          <p class="where">📍 ~2:00 · Ring 4</p>
+          <p>The best small food city in the Northeast, a working waterfront, lighthouses for the postcard stop, and the Amtrak Downeaster as a no-driving option from Boston. The natural first overnight trip from this list rather than a day trip.</p>
+          <div class="meta"><span class="tag mod">Overnight-ish</span></div>
+        </div>
+      </div>
+      <p class="vnote">Ring 4 entries are seasoned-traveler picks rather than freshly verified listings — check hours and schedules (WaterFire, Tanglewood, MASS MoCA) before committing a day.</p>
+    </section>
+
+    <p class="backtop"><a href="#home">← Back to start</a></p>
+  </div>
+</section>
+<section class="guidesec" id="mon" data-guide hidden>
+  <div class="wrap">
+    <div class="guidehead">
+      <p class="kicker">Guide 10</p>
+      <h2 class="guidetitle" style="font-family:var(--serif);color:var(--navy)">Calendar</h2>
+      <p class="homeintro">August 2026 through July 2027, one card per month: the confirmed dates, the annual rhythms, and the one thing to book ahead. The current month is highlighted automatically.</p>
+    </div>
+
+    <section class="section" id="mon-cal">
+      <div class="calgrid" id="home-year-calendar">
+        <div class="mcard"><h4>August 2026</h4><ul>
+          <li><strong>Aug 1–2:</strong> Pan-Mass Challenge through town; Phish closes Fenway Aug 1</li>
+          <li><strong>Aug 4:</strong> Natick Night Out, NHS, 4–8pm</li>
+          <li><strong>Aug 6:</strong> Natick Nights downtown, 5–8pm (rain 8/13)</li>
+          <li><strong>Aug 14–16:</strong> Bolton Fair · <strong>21–30:</strong> Marshfield Fair · <strong>28–30:</strong> 4-H Fair, Westford</li>
+          <li><strong>Aug 22:</strong> Multicultural Day on the Common; D2R2 in Deerfield</li>
+          <li>U-pick peaches at Lookout; early apples late month</li>
+          <li><em>Book now:</em> fall after-school programs (Robo Hub, School of Rock, Central Rock)</li>
+        </ul></div>
+        <div class="mcard"><h4>September</h4><ul>
+          <li><strong>Sep 19:</strong> Natick Days on the Common (rain 9/20) — the big one</li>
+          <li>Apple season proper at Lookout Farm; Barnyard Play Area opens</li>
+          <li>The Big E in West Springfield, late month</li>
+          <li>Harvard–Bolton ridge rides begin their best six weeks</li>
+          <li><em>Book now:</em> nothing urgent — enjoy it</li>
+        </ul></div>
+        <div class="mcard"><h4>October</h4><ul>
+          <li><strong>Oct 2–12:</strong> Topsfield Fair (weekday visit)</li>
+          <li>HONK! festival, Somerville — free street-band chaos</li>
+          <li>Peak foliage: Wachusett climb, Fruitlands overlook</li>
+          <li>Mushroom season — Mycological Club forays</li>
+          <li>Fall Reptile Expo, Hanover — check neherp.com</li>
+          <li><em>Book now:</em> ski passes at pre-season prices start appearing</li>
+        </ul></div>
+        <div class="mcard"><h4>November</h4><ul>
+          <li>Holiday craft fairs and church bazaars, every weekend</li>
+          <li>Last leaf-free gravel rides before the salt</li>
+          <li>Danforth and museum-pass season begins in earnest</li>
+          <li><em>Book now:</em> ski lesson packages, Nashoba night passes</li>
+        </ul></div>
+        <div class="mcard"><h4>December</h4><ul>
+          <li>Natick tree lighting and downtown holiday events</li>
+          <li>Snowport and Boston holiday markets, by train</li>
+          <li>Winter pottery session sign-ups (Brickstack, Community Kiln)</li>
+          <li>First Night Boston, Dec 31</li>
+        </ul></div>
+        <div class="mcard"><h4>January 2027</h4><ul>
+          <li>Nashoba night skiing and the tubing park in full swing</li>
+          <li>Weston Ski Track under lights; Callahan XC for free</li>
+          <li>Level99 weekday visits — cheapest, emptiest month</li>
+          <li><em>Book now:</em> summer sailing on the Charles (yes, already)</li>
+        </ul></div>
+        <div class="mcard"><h4>February</h4><ul>
+          <li>School vacation week: holiday pricing everywhere, plan around it</li>
+          <li>Boda Borg vacation-week trip — go on the weekday</li>
+          <li>Native Plant Trust winter webinars and course catalog</li>
+          <li><em>Book now:</em> spring lacrosse and soccer registration</li>
+        </ul></div>
+        <div class="mcard"><h4>March</h4><ul>
+          <li>Maple sugaring at Natick Community Organic Farm — the ritual</li>
+          <li>Last cheap ski nights; Wachusett twilight</li>
+          <li>Vernal pools wake up — salamander nights (Cape Ann VPT)</li>
+          <li><em>Book now:</em> summer camp weeks; get on the native-plant-sale lists</li>
+        </ul></div>
+        <div class="mcard"><h4>April</h4><ul>
+          <li>Garden in the Woods reopens mid-month — go in the first two weeks for ephemerals</li>
+          <li>Patriots' Day reenactments, Lexington &amp; Concord</li>
+          <li>Spring lacrosse and soccer seasons start</li>
+          <li>Spring Reptile Expo window opens — check neherp.com</li>
+        </ul></div>
+        <div class="mcard"><h4>May</h4><ul>
+          <li>Natick Boathouse opens — season pass + sailing check-out</li>
+          <li>Native plant sales (they sell out the first weekend)</li>
+          <li>Farmers Market returns to the Common, Saturdays 9–1</li>
+          <li><em>Book now:</em> junior golf series at Sassamon Trace</li>
+        </ul></div>
+        <div class="mcard"><h4>June</h4><ul>
+          <li>Natick Nights season begins downtown</li>
+          <li>Reptile Expo, Hanover (2026 edition was Jun 21)</li>
+          <li><strong>Jun 1:</strong> NHS athletics registration opens — hard deadline culture</li>
+          <li>Strawberries and the first farm-stand rhythm</li>
+        </ul></div>
+        <div class="mcard"><h4>July</h4><ul>
+          <li><strong>Jul 4:</strong> Community Picnic on the Common, noon–4, kids' parade</li>
+          <li>Framingham Friday Night Concerts begin, 6–8pm</li>
+          <li>Levitate (Marshfield), Lowell Folk Fest + Newport Folk (late month)</li>
+          <li>Jack's Abby anniversary fairgrounds weekend</li>
+          <li>U-pick peaches return; boathouse pass promo window</li>
+        </ul></div>
+      </div>
+      <p class="vnote">Confirmed 2026 dates are exact; 2027 entries project the annual pattern and should be re-verified when organizers publish. Rebuilt July 2026.</p>
+    </section>
+
+    <p class="backtop"><a href="#home">← Back to start</a></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Natick &amp; MetroWest — a field guide built for one family. Compiled July 2026 from official town, state, and organizer sources.</span>
+    <span class="updated">Verify hours and dates before you go · entries name their sources</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var guides=['home','jul','gra','boy','spo','out','eat','evt','mak','day','mon'];
+  var fmap={free:'free',cheap:'cheap',close:'close',kids:'kids',dog:'dog'};
+  var current='home', filter='all';
+  var fbar=document.getElementById('filterbar');
+  var fcount=document.getElementById('fcount');
+
+  var nowlines=[
+    "It's January — Nashoba under lights, and the Charles sailing sign-ups quietly open.",
+    "It's February — vacation-week pricing everywhere; Boda Borg on a weekday is the move.",
+    "It's March — sugaring at the community farm, and the salamanders start moving.",
+    "It's April — Garden in the Woods just reopened. First two weeks. Go.",
+    "It's May — the boathouse opens on the lake, and the plant sales sell out fast.",
+    "It's June — Natick Nights are back, and the Reptile Expo lands in Hanover.",
+    "It's July — free concerts Fridays in Framingham, peaches at Lookout, festivals stacked at month's end.",
+    "It's August — PMC weekend, Natick Nights on the 6th, and three fairs in a row.",
+    "It's September — Natick Days on the 19th, and apples take over South Natick.",
+    "It's October — Topsfield, foliage on the ridge roads, mushrooms in the woods.",
+    "It's November — craft-fair season, and ski passes are cheapest right now.",
+    "It's December — tree lightings, holiday markets by train, and winter session sign-ups."
+  ];
+  try{
+    var m=(new Date()).getMonth();
+    var nl=document.getElementById('nowline');
+    if(nl) nl.textContent=nowlines[m];
+    var mc=document.querySelectorAll('#home-year-calendar .mcard');
+    // calendar starts at August (index 7)
+    var idx=(m-7+12)%12;
+    if(mc[idx]) mc[idx].classList.add('now');
+  }catch(e){}
+
+  function applyFilter(){
+    if(current==='home'){fbar.hidden=true;return;}
+    fbar.hidden=false;
+    var sec=document.getElementById(current);
+    var cards=sec.querySelectorAll('.card');
+    var shown=0,total=cards.length;
+    cards.forEach(function(c){
+      var ok = filter==='all' || c.querySelector('.tag.'+fmap[filter]);
+      c.style.display = ok?'':'none';
+      if(ok) shown++;
+    });
+    sec.querySelectorAll('.section').forEach(function(s){
+      var cs=s.querySelectorAll('.card');
+      if(cs.length){
+        var any=Array.prototype.some.call(cs,function(c){return c.style.display!=='none';});
+        s.style.display=any?'':'none';
+      }
+    });
+    fcount.textContent = (filter==='all') ? (total+' entries') : (shown+' of '+total+' entries');
+  }
+  function setFilter(f){
+    filter=f;
+    document.querySelectorAll('.chip').forEach(function(b){b.classList.toggle('on',b.dataset.f===f);});
+    applyFilter();
+  }
+  function show(id){
+    var g = guides.indexOf(id)>=0 ? id : (guides.indexOf(id.split('-')[0])>=0 ? id.split('-')[0] : 'home');
+    current=g;
+    document.querySelectorAll('[data-guide]').forEach(function(s){ s.hidden = (s.id!==g); });
+    document.querySelectorAll('.navlinks a').forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+g); });
+    setFilter('all');
+    window.scrollTo(0,0);
+    if(id!==g){ var t=document.getElementById(id); if(t){ setTimeout(function(){t.scrollIntoView({behavior:'smooth',block:'start'});},30); } }
+  }
+  document.querySelectorAll('.chip').forEach(function(b){ b.addEventListener('click',function(){ setFilter(b.dataset.f); }); });
+  window.addEventListener('hashchange',function(){ show(location.hash.slice(1)||'home'); });
+  show(location.hash.slice(1)||'home');
+})();
+</script>
+
+</body>
+</html>
