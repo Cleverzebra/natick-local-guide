@@ -1,4 +1,4 @@
-# Natick & MetroWest — A Field Guide
+# Natick & MetroWest - A Field Guide
 
 A personalized MetroWest field guide built for one Natick family: a gardener with
 a biology background who works from home downtown, a landscaper who plays bass
@@ -10,7 +10,7 @@ Hidden gems over tourist stops, organized by drive time from Natick Center
 (0–15 min · 15–40 min · 40–90 min · worth-the-trip), with confirmed 2026 dates
 where organizers had published them.
 
-Everything lives in **`index.html`** — a single interactive one-page app
+Everything lives in **`index.html`** - a single interactive one-page app
 (no build step, no dependencies) that hosts fine on GitHub Pages. Open it and
 pick a guide; the filter bar narrows to what's free, under $25, close to Natick,
 good with kids, or dog-friendly.
@@ -36,7 +36,7 @@ good with kids, or dog-friendly.
 - Compiled **July 2026** from official town, state, DCR, Trustees, Mass Audubon,
   MBTA and organizer sources.
 - Confirmed 2026 dates are exact; annual events without a published date are
-  marked as approximate. **Verify before you go** — hours, prices and seasonal
+  marked as approximate. **Verify before you go** - hours, prices and seasonal
   schedules change, and entries name their sources so a check takes seconds.
 - Prices and policies (Level99's guardian rule, boathouse sailing check-out,
   state park fees) were current as of July 2026.
